@@ -8,9 +8,10 @@ default:=generated/$(MAIN).pdf
 # Builds twice for references and toc 
 $(default): $(MAIN).tex
 	pdflatex $(MAIN).tex
+	bibtex $(MAIN)
 	pdflatex $(MAIN).tex > /dev/null 2>&1 
 	mkdir -p generated 
-	mv $(MAIN).log $(MAIN).aux $(MAIN).pdf $(MAIN).out generated/
+	mv $(MAIN).blg $(MAIN).bbl $(MAIN).log $(MAIN).aux $(MAIN).pdf $(MAIN).out generated/
 
 # Open up the generated pdf with evince after build
 .PHONY: view 

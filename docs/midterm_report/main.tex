@@ -110,102 +110,87 @@ other devices from the ASAP7 library.
 
 \section{Introduction}
 
-\lettrine[nindent=0em,lines=3]{L} Describe state of the art and issues/why does this work matter.
-\blindtext % 
-
-\blindtext % Dummy text
-
 %------------------------------------------------
 
-\section{Proposed Techniques}
-
-Maecenas sed ultricies felis. Sed imperdiet dictum arcu a egestas. 
-\begin{itemize}
-\item Donec dolor arcu, rutrum id molestie in, viverra sed diam
-\item Curabitur feugiat
-\item turpis sed auctor facilisis
-\item arcu eros accumsan lorem, at posuere mi diam sit amet tortor
-\item Fusce fermentum, mi sit amet euismod rutrum
-\item sem lorem molestie diam, iaculis aliquet sapien tortor non nisi
-\item Pellentesque bibendum pretium aliquet
-\end{itemize}
-\blindtext % Dummy text
-
-Text requiring further explanation\footnote{Example footnote}.
+\section{Proposed Techniques}\label{sec:proposed}
 
 %------------------------------------------------
 
 \section{Methods (A/B comparison)}
+SRAM-based island-style FPGAs represent the vast majority of commercial and academic
+FPGA implementations \cite{farooq_fpga_2012}. For this reason, this architecture 
+will be used to construct three functionally equivalent FPGAs using the three different
+routing schemes discussed in the previous Section \ref{sec:proposed}. 
 
-\begin{table}
-\caption{Example table}
-\centering
-\begin{tabular}{llr}
-\toprule
-\multicolumn{2}{c}{Name} \\
-\cmidrule(r){1-2}
-First name & Last Name & Grade \\
-\midrule
-John & Doe & $7.5$ \\
-Richard & Miles & $2$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+% Describe tile 
+To create an island-style FPGA a basic \textit{tile} must first be constructed. 
+Each tile consists of one \textit{configurable logic block} (CLB), 
+two \textit{connection boxes} (CBs), and one \textit{switch box} (SB). 
+The CLB contains N basic logic elements (BLEs) which each contain a K-input 
+look-up-table (LUT) and a flip-flop. In addition, CLBs provide an intra-cluster 
+routing network to connect the CLB I/O to the individual BLE I/O. The CBs connect
+the CLBs to their adjacent routing channels, while the SBs provide the connections
+between intersecting routing channels. It is common to fold the output portion of 
+the CBs into the SB \cite{chen_efficient_2010}. Thus, the same MUXes used for
+connecting routing channels can be enlarged to accomodate the additional 
+CLB output connections.
 
-\blindtext % Dummy text
+% Describe specific FPGA architecture that we will use 
+To ensure that our results are consistent with previous works, we
+will create a very similar tile to the one described in \cite{chen_efficient_2010}. 
+This tile consists of 10 4-LUT BLEs w/ 22 input pins and 10 output pins.
+In order to simplify the design, the CBs in our tile will connect both
+the outputs and inputs of the CLB to the adjacent routing channel.
+The intra-CLB routing network will be fully populated, allowing for connection 
+between any BLE input and CLB input as well as between any BLE output and CLB output.
+The SB flexibility will be set to 3 ($f_{SB} = 3$), allowing all 
+incoming signals to the SB to be switched left, right, or straight through. 
+The CB input and output flexibilities will be set to 0.2 ($f_{CB-in} = 0.2$) 
+and 0.1 respectively ($f_{CB-out} = 0.1$). These flexibilities determine the 
+proportion of signals within the adjacent routing channels that the CB can 
+connect an input or output signal to.
 
-\begin{equation}
-\label{eq:emc}
-e = mc^2
-\end{equation}
+% Detail CMOS implementation (mainly mux architecture) 
+The CMOS-only FPGA will serve as a baseline for the NEMs designs.
+Because the programmable interconnect (PI) will be replaced with NEMs relays, the make up
+of our baseline's PI will significantly impact the perceived benefits. 
+We will use simple NMOS pass-transistors to build the MUXes used 
+for the PI and the LUTs. While transmission gates show promise for scaled nodes, 
+commercial FPGAs continue to use pass-transistors with gate-boosting and internal buffering
+to achieve a slightly lower area-delay product \cite{chiasson_should_2013}.
 
-\blindtext % Dummy text
+% Detail how we will model the NEMs relays
+The NEMs relays can be modeled as simple RC circuits when configured in the 
+ON-state \cite{chen_efficient_2010} \cite{chen_integrated_2008} and can be ignored, 
+because they are physically disconnected from the 
+circuit, when in the OFF-state. Modeling the dynamics of the NEMs relays as they switch on and
+off is not as important as this steady-state behavior for this analysis. 
+As long as the configuration times are not prohibitively long, and they have been 
+shown not to be \cite{??} \cite{??}, then the dynamics of the switches can be ignored.
+
+% Detail final analysis that will be done
+Preliminary area analysis can be done by comparing each FPGA tile.
+It is important to account for the additional metal area used by the 
+relays as this will significantly impact the place-and-route quality
+due to higher routing congestion. Further analysis can be performed 
+on the full FPGAs to determine the dissipated power and maximum 
+operating frequency for each design for a given set of test circuits.
 
 %------------------------------------------------
 
+%------------------------------------------------
 \section{Hypothesis}
-
-Maecenas sed ultricies felis. Sed imperdiet dictum arcu a egestas. 
-\begin{itemize}
-\item Donec dolor arcu, rutrum id molestie in, viverra sed diam
-\item Curabitur feugiat
-\item turpis sed auctor facilisis
-\item arcu eros accumsan lorem, at posuere mi diam sit amet tortor
-\item Fusce fermentum, mi sit amet euismod rutrum
-\item sem lorem molestie diam, iaculis aliquet sapien tortor non nisi
-\item Pellentesque bibendum pretium aliquet
-\end{itemize}
-\blindtext % Dummy text
 
 %------------------------------------------------
 
 \section{Conclusion}
 
-State of the art is X, in our continued work we will compare these techinques 
-\begin{itemize}
-\item Donec dolor arcu, rutrum id molestie in, viverra sed diam
-\item Curabitur feugiat
-\item turpis sed auctor facilisis
-\item arcu eros accumsan lorem, at posuere mi diam sit amet tortor
-\item Fusce fermentum, mi sit amet euismod rutrum
-\item sem lorem molestie diam, iaculis aliquet sapien tortor non nisi
-\item Pellentesque bibendum pretium aliquet
-\end{itemize}
-\blindtext % Dummy text
-
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
 
-\begin{thebibliography}{99} % Bibliography - this is intentionally simple in this template
-
-\bibitem[Figueredo and Wolf, 2009]{Figueredo:2009dg}
-Figueredo, A.~J. and Wolf, P. S.~A. (2009).
-\newblock Assortative pairing and life history strategy - a cross-cultural
-  study.
-\newblock {\em Human Nature}, 20:317--330.
- 
-\end{thebibliography}
+\bibliographystyle{plain}
+\bibliography{midterm_report}
 
 %----------------------------------------------------------------------------------------
 
