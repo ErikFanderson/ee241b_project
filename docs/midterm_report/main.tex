@@ -53,7 +53,7 @@
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{Running title $\bullet$ May 2016 $\bullet$ Vol. XXI, No. 1} % Custom header text
+\fancyhead[C]{UC Berkeley Advanced Digital Integrated Circuits Letters $\bullet$ April 2020} % Custom header text
 \fancyfoot[RO,LE]{\thepage} % Custom footer text
 
 \usepackage{titling} % Customizing the title section
@@ -81,9 +81,7 @@
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
 \begin{abstract}
-\noindent TODO: roughly consolidate with bora 5-sentence guide. 1) Subject area 
-2)Contrast 3)Key contribution 4)Basis for comparison 5)Summary of (expected) results
-In recent years, there has been much attention on bringing mechanical 
+\noindent In recent years, there has been much attention on bringing mechanical 
 systems to the nanoscale. Reconfigurable computing for AI and Machine Learning has 
 also sparked lots of growth in the tech industry. Recently, CMOS compatible 
 Back-End-Of-Line mechanical systems have been proposed to create denser reconfigurable
@@ -109,10 +107,35 @@ other devices from the ASAP7 library.
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}
+Field Programmable Gate Arrays (FPGAs) have long been used to enable rapid prototyping of digital systems pre-tapeout of Application Specific Integrated Circuits (ASICs). The framework they provide for high-performance reconfigurable digital systems is now proving useful for end-use applications including ML-acceleration, cryptocurrency mining, high-frequency stock trading, and software-defined radios. FPGA demand is predicted to continue rising as these protoyping and end-use markets increase in demand.
+
+To enable this flexibility, FPGA-based systems are much more demanding than their ASIC counterparts. FPGAs come with larger die area requirements, delay, and dynamic power consumption. These factors increase the cost of FPGA-based systems and lower their potential performance over ASIC-based systems. Recently, CMOS compatible devices have been developed that could mitigate these area/power/performance drawbacks.  Nano-Electro-Mechanical-Systems (NEMS) provide a promising, easily-integratable way to further FPGA-based systems. But first, a look at where all this overhead comes from in FPGAs.
+
+\textit{The Island-Style FPGA architecture}
+
+FPGAs general consist of a general logic fabric as well as application-specific components, such as block RAM, DSPs, clocking, I/O, and serial I/O. This project will tackle the general logic fabric, since it makes up the majority of the FPGA.
+
+Island-Style logic fabric can be divided into two major components: Configurable Logic Blocks and Reconfigurable Interconnects. Configurable Logic Blocks (CLBs) are used to implement arbitrary combinational and sequential logic circuits. They consist of Lookup Tables, Flip Flops, and Multiplexers. Each CLB can be programmed to perform an arithmetic or state-based portion of a larger logic system. CLBs are connected together using reconfigurable interconnects. Reconfigurable Interconnects, made up of Connection Blocks and Switch Boxes, are the “breadboard” of the FPGA. They allow the portions of the digital system to communicate. In an Island-Style Architecture, Connection Blocks connect CLBs to routing wires that run throughout the fabric. Those wires are then connected to each other via Switch Boxes. These routing elements are primarily made up of muxes and SRAM, a setup that is readily implementable using NEM relays.
+
+These Reconfigurable Interconnects dominate the area/power overhead incurred by FPGAs [Altera 08]. In an ASIC, interconnects are simple, passive elements; circuits are connected using fixed metal lines paths above the transistor devices. To enable design flexibility, FPGAs add SRAM configuration storage as well as the mux circuitry required to connect blocks and wires. Not only does this additional circuitry incur a large power/delay overhead, it also must be implemented completely in the Front-End-Of-Line alongside logic transistors, adding significantly to die area.
+
+Obviously, FPGAs are awesome, and have many compelling applications. But how to mitigate the performance/area/power hits? ASIC circuits are connected solely via Back-End-Of-Line (BEOL) Metal lines. If FPGAs could emulate this structure, much of the overhead incurred from reconfigurable interconnects could be eliminated.
+
+
+\textit{NEM Relays}
+
+Nanoelectromechanical Relays are electrically actuated mechanical switches. Notably, they experience zero leakage, have the potential for lower on-state resistance than NMOS pass gate, and can be implemented in the BEOL in a CMOS-compatible process flow. The major disadvantages of NEM relays are large mechanical switching delay (> 1ns) and lower reliability with respect to transistors (~10^9-10^10 cycles). The two relay device architectures examined in this work are lateral “crab style” relays and vertical interconnect relays. Due to their hysteretic properties, they can be implemented to replace both the interconnect pass-gates and their corresponding SRAM cells.
+
+The lateral “crab-style” relays are the result of many years of development at Stanford and UC Berkeley to create an efficient CMOS compatible NEM relay. These relays are switched on/off using the gate to body voltage difference. When “off”, no current flows across the air gap. When “on”, current flows between the drain and source with low on-state resistance. With this design, the device can be body-biased to have an extremely small switching voltage, experimentally shown to be sub- 50mV range.
+
+The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a “custom” structure, these vertical ones are designed within the constraints of standard CMOS BEOL design rules; i.e, they use standard metal line/via structures, and dimensions are standard for the process node.
 
 %------------------------------------------------
 
 \section{Proposed Techniques}\label{sec:proposed}
+
+%%%IN PROGRESS%%%
+
 
 %------------------------------------------------
 
