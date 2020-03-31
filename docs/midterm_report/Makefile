@@ -25,10 +25,4 @@ view: $(default)
 
 .PHONY: clean 
 clean:
-	rm -rf generated/ \
-		$(MAIN).bbl \
-		$(MAIN).blg \
-		$(MAIN).dvi \
-		$(MAIN).log \
-		$(MAIN).aux \
-		$(MAIN).out
+	rm -rf generated/
