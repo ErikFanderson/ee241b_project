@@ -60,6 +60,11 @@
 
 \usepackage{hyperref} % For hyperlinks in the PDF
 
+% USER PACKAGES
+\usepackage[backend=biber, sorting=none, giveninits=true, bibencoding=utf8]{biblatex}
+\addbibresource{midterm_report.bib}
+%\nocite{*}
+
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
@@ -245,8 +250,7 @@ of NEMS based FPGAs.
 %	REFERENCE LIST
 %----------------------------------------------------------------------------------------
 
-\bibliographystyle{plain}
-\bibliography{midterm_report}
+\printbibliography
 
 %----------------------------------------------------------------------------------------
 

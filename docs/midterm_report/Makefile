@@ -10,7 +10,7 @@ tmp = tmp.$(MAIN)
 $(default): $(MAIN).tex
 	cp $(MAIN).tex $(tmp).tex
 	latex $(tmp).tex
-	bibtex $(tmp)
+	biber $(tmp)
 	latex $(tmp).tex > /dev/null 2>&1
 	latex $(tmp).tex > /dev/null 2>&1
 	pdflatex $(tmp).tex
