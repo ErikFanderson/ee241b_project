@@ -63,7 +63,7 @@
 % USER PACKAGES
 \usepackage[backend=biber, sorting=none, giveninits=true, bibencoding=utf8]{biblatex}
 \addbibresource{midterm_report.bib}
-%\nocite{*}
+\renewcommand*{\bibfont}{\small}
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -85,18 +85,6 @@
 }
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
-%\begin{abstract}
-%\noindent In recent years, there has been much attention on bringing mechanical 
-%systems to the nanoscale. Reconfigurable computing for AI and Machine Learning has 
-%also sparked lots of growth in the tech industry. Recently, CMOS compatible 
-%Back-End-Of-Line mechanical systems have been proposed to create denser reconfigurable
-%systems. In this project, we propose the design of a BEOL 5T standard cell switch and 
-%its implementation in a complex digital system for reduced die area and increased circuit
-%complexity in a 7nm process (ASAP7). Example applications include reconfigurable digital logic,
-%reconfigurable hi-fidelity analog frontend, or compute-in-memory for AI/ML. Our goal is to 
-%perform the first step of Design-Technology Co-Optimization by integrating the switch standard 
-%cell into the hammer-vlsi \cite{?} flow alongside other devices from the ASAP7 library \cite{??)}
-%\end{abstract}
 \begin{abstract}
 \noindent FPGAs, like all reconfigurable systems, exhibit significantly
 worse performance than their 1:1 ASIC counterparts. This disparity is primarily due
@@ -244,7 +232,7 @@ cases, we expect the area and performance to improve compared to the CMOS-only d
 We have reviewed several methods for creating BEOL NEMs relays in CMOS processes. 
 Our proposed work will include the creation of 3 island-style FPGA tiles including NEMS 
 supporting circuitry for direct comparison of area and performance between a traditional 
-CMOS+SRAM FPGA and two different styles of NEMS based FPGAs.
+CMOS-only FPGA and two different styles of NEMS based FPGAs.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
