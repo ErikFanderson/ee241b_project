@@ -9,7 +9,7 @@ tmp = tmp.$(MAIN)
 # Builds multiple times for toc, bib, etc...
 $(default): $(MAIN).tex
 	cp $(MAIN).tex $(tmp).tex
-	latex $(tmp).tex > /dev/null 2>&1
+	latex $(tmp).tex
 	bibtex $(tmp)
 	latex $(tmp).tex > /dev/null 2>&1
 	latex $(tmp).tex > /dev/null 2>&1

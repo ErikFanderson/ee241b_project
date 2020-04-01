@@ -68,7 +68,7 @@
 
 \pretitle{\begin{center}\Huge\bfseries} % Article title formatting
 \posttitle{\end{center}} % Article title closing formatting
-\title{Implementation of NEMS Interconnect Relays for Reconfigurable Circuits} % Article title
+\title{NEMS Interconnect Relays for Reconfigurable Circuits} % Article title
 \author{%
 \textsc{Lars Tatum}\\[1ex] % Your name
 \normalsize University of California \\ % Your institution
@@ -80,18 +80,29 @@
 }
 \date{\today} % Leave empty to omit a date
 \renewcommand{\maketitlehookd}{%
+%\begin{abstract}
+%\noindent In recent years, there has been much attention on bringing mechanical 
+%systems to the nanoscale. Reconfigurable computing for AI and Machine Learning has 
+%also sparked lots of growth in the tech industry. Recently, CMOS compatible 
+%Back-End-Of-Line mechanical systems have been proposed to create denser reconfigurable
+%systems. In this project, we propose the design of a BEOL 5T standard cell switch and 
+%its implementation in a complex digital system for reduced die area and increased circuit
+%complexity in a 7nm process (ASAP7). Example applications include reconfigurable digital logic,
+%reconfigurable hi-fidelity analog frontend, or compute-in-memory for AI/ML. Our goal is to 
+%perform the first step of Design-Technology Co-Optimization by integrating the switch standard 
+%cell into the hammer-vlsi \cite{?} flow alongside other devices from the ASAP7 library \cite{??)}
+%\end{abstract}
 \begin{abstract}
-\noindent In recent years, there has been much attention on bringing mechanical 
-systems to the nanoscale. Reconfigurable computing for AI and Machine Learning has 
-also sparked lots of growth in the tech industry. Recently, CMOS compatible 
-Back-End-Of-Line mechanical systems have been proposed to create denser reconfigurable
-systems. In this project, we propose the design of a BEOL 5T standard cell switch and 
-its implementation in a complex digital system for reduced die area and increased circuit
-complexity in a 7nm process (ASAP7). Example applications where these would be most pertinent
-include reconfigurable digital logic, reconfigurable hi-fidelity analog frontend, or 
-compute-in-memory for AI/ML. Our goal is to perform the first step of Design-Technology
-Co-Optimization by integrating the switch standard cell into the hammer-vlsi flow alongside 
-other devices from the ASAP7 library.
+\noindent FPGAs, like all reconfigurable systems, exhibit significantly
+worse performance than their ASIC counterparts. This disparity is primarily due
+to the extremely flexible yet power-hungry and physically large programmable routing
+network inside the FPGA. To alleviate this problem, several versions of CMOS compatible 
+Back-End-Of-Line (BEOL) mechanical relays have been proposed to create denser 
+and more efficient programmable interconnects. In this paper, we propose to 
+analyze the performance and area of two such relay FPGA (rFPGA) architectures 
+relative to the traditional CMOS-only FPGA. Our designs will use ASAP7 \cite{clark_asap7_2016} 
+a predictive 7nm PDK, to realistically gauge the benefits and drawbacks of rFPGAs 
+in the modern semiconductor landscape.
 \end{abstract}
 }
 
@@ -143,7 +154,7 @@ The vertical relays are designed to be more compact and compatible with existing
 SRAM-based island-style FPGAs represent the vast majority of commercial and academic
 FPGA implementations \cite{farooq_fpga_2012}. For this reason, this architecture 
 will be used to construct three functionally equivalent FPGAs using the three different
-routing schemes discussed in the previous Section \ref{sec:proposed}. 
+routing schemes discussed in Section \ref{sec:proposed}. 
 
 % Describe tile 
 To create an island-style FPGA a basic \textit{tile} must first be constructed. 
@@ -171,7 +182,9 @@ incoming signals to the SB to be switched left, right, or straight through.
 The CB input and output flexibilities will be set to 0.2 ($f_{CB-in} = 0.2$) 
 and 0.1 respectively ($f_{CB-out} = 0.1$). These flexibilities determine the 
 proportion of signals within the adjacent routing channels that the CB can 
-connect an input or output signal to.
+connect an input or output signal to. The channel width will be set to 104 wires
+($W=104$) with 80 of those wires representing the minimum channel width for 
+CLBs with 10 outputs and length 4 routing segments ($W_{min} = 2 * 10 * 4 = 80$).
 
 % Detail CMOS implementation (mainly mux architecture) 
 The CMOS-only FPGA will serve as a baseline for the NEMs designs.
@@ -186,10 +199,12 @@ to achieve a slightly lower area-delay product \cite{chiasson_should_2013}.
 The NEMs relays can be modeled as simple RC circuits when configured in the 
 ON-state \cite{chen_efficient_2010} \cite{chen_integrated_2008} and can be ignored, 
 because they are physically disconnected from the 
-circuit, when in the OFF-state. Modeling the dynamics of the NEMs relays as they switch on and
-off is not as important as this steady-state behavior for this analysis. 
-As long as the configuration times are not prohibitively long, and they have been 
-shown not to be \cite{??} \cite{??}, then the dynamics of the switches can be ignored.
+circuit, when in the OFF-state. Modeling the dynamics of the NEMs relays
+as they switch on and off is not as important as the steady-state behavior
+for this analysis. Switching time will only affect the FPGA configuration
+time, and thus as long as the relays are not prohibitively slow, and they
+have been shown not to be \cite{??}, then the dynamics of the switches can be 
+ignored for our purposes.
 
 % Detail final analysis that will be done
 Preliminary area analysis can be done by comparing each FPGA tile.
@@ -198,15 +213,27 @@ relays as this will significantly impact the place-and-route quality
 due to higher routing congestion. Further analysis can be performed 
 on the full FPGAs to determine the dissipated power and maximum 
 operating frequency for each design for a given set of test circuits.
+This will require connecting an array of FPGA tiles and running 
+placement, packing, and routing to extract realistic performance and
+utilization numbers. A popular open source tool known as the Verilog-to-Routing 
+(VTR) project \cite{vtr8} will be used to perform this analysis.  
 
 %------------------------------------------------
 
 %------------------------------------------------
 \section{Hypothesis}
+The vertical 4T relays should show a significant area reduction compared to the
+lateral relays and CMOS-only FPGAs. However, due to the reduced routing resources caused
+by the use of additional metal layers in the vertical relays, we predict that the integrated
+performance results will counterbalance the benefits from the reduced lateral area. In both NEMs 
+cases, we expect the area and performance to improve compared to the CMOS-only designs.
 
 %------------------------------------------------
-
 \section{Conclusion}
+We have reviewed several methods for creating BEOL NEMs relays in CMOS processes. 
+Our proposed work will include the creation of 3 island-style FPGA tiles for 
+direct comparison between a traditional CMOS+SRAM FPGA and two different styles
+of NEMS based FPGAs.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
