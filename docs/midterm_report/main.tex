@@ -99,7 +99,7 @@
 %\end{abstract}
 \begin{abstract}
 \noindent FPGAs, like all reconfigurable systems, exhibit significantly
-worse performance than their ASIC counterparts. This disparity is primarily due
+worse performance than their 1:1 ASIC counterparts. This disparity is primarily due
 to the extremely flexible yet power-hungry and physically large programmable routing
 network inside the FPGA. To alleviate this problem, several versions of CMOS compatible 
 Back-End-Of-Line (BEOL) mechanical relays have been proposed to create denser 
@@ -149,7 +149,7 @@ In this work, the integration of nanoelectromechanical relays as reconfigurable 
 
 Nanoelectromechanical Relays are electrically actuated mechanical switches. Notably, they experience zero leakage, have the potential for lower on-state resistance than NMOS pass gate, and can be implemented in the BEOL in a CMOS-compatible process flow\cite{LIU}. The major disadvantages of NEM relays are large mechanical switching delay (> 1ns) and lower reliability with respect to transistors (1e9 to 1e10 cycles). The two relay device architectures examined in this work are lateral "crab style" relays and vertical interconnect relays. Due to their hysteretic properties, they can be implemented to replace both the interconnect pass-gates and their corresponding SRAM cells.
 
-The lateral "crab-style" relays are the result of many years of development at Stanford and UC Berkeley to create an efficient CMOS compatible NEM relay. These relays are switched on/off using the gate to body voltage difference. When "off", no current flows across the air gap. When "on", current flows between the drain and source with low on-state resistance. With this design, the device can be body-biased to have an extremely small switching voltage, experimentally shown to be sub-50mV range.
+The lateral "crab-style" relays are the result of many years of development at Stanford and UC Berkeley to create an efficient CMOS compatible NEM relay. These relays are switched on/off using the gate to body voltage difference. When "off", no current flows across the air gap. When "on", current flows between the drain and source with low on-state resistance. With this design, the device can be body-biased to have an extremely small switching voltage, experimentally shown to be sub-50mV range\cite{LIU}.
 
 The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones are designed within the constraints of standard CMOS BEOL design rules; i.e, they use standard metal line/via structures, and dimensions are standard for the process node.
 
@@ -236,15 +236,15 @@ utilization numbers. A popular open source tool known as the Verilog-to-Routing
 The vertical 4T relays should show a significant area reduction compared to the
 lateral relays and CMOS-only FPGAs. However, due to the reduced routing resources caused
 by the use of additional metal layers in the vertical relays, we predict that the integrated
-performance results will counterbalance the benefits from the reduced lateral area. In both NEMs 
+performance results will counterbalance the benefits from the reduced lateral area. In both NEMS design 
 cases, we expect the area and performance to improve compared to the CMOS-only designs.
 
 %------------------------------------------------
 \section{Conclusion}
 We have reviewed several methods for creating BEOL NEMs relays in CMOS processes. 
-Our proposed work will include the creation of 3 island-style FPGA tiles for 
-direct comparison between a traditional CMOS+SRAM FPGA and two different styles
-of NEMS based FPGAs.
+Our proposed work will include the creation of 3 island-style FPGA tiles including NEMS 
+supporting circuitry for direct comparison of area and performance between a traditional 
+CMOS+SRAM FPGA and two different styles of NEMS based FPGAs.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
