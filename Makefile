@@ -1,12 +1,9 @@
-TESTS=tests
-SRC=toolbox
-DIRS = $(SRC) $(TESTS)
+DIRS = fpga_gen_tool 
 
 default: list 
 
 # Export environment
-export: environment.yml
-environment.yml:
+export:
 	conda env export --from-history | grep -v "prefix" > environment.yml
 
 # Formats pyproject directory recursively

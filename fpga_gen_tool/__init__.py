@@ -36,40 +36,40 @@ class FPGAGenTool(Tool):
         self.context = None
 
     def steps(self):
-        return [self.build_context, 
-                self.build_routing_resources, 
-                self.build_io_blocks, 
-                self.build_clbs,
-                self.build_custom_tiles,
-                self.array_tiles,
-                self.render_fpga]
+        return [
+            self.build_context, self.build_routing_resources,
+            self.build_io_blocks, self.build_clbs, self.build_custom_tiles,
+            self.array_tiles, self.render_fpga
+        ]
 
     def build_context(self):
         """Make basic arch context"""
-        self.context = ArchitectureContext('top', 3, 3, BitchainConfigCircuitryDelegate)
-    
+        self.context = ArchitectureContext('top', 3, 3,
+                                           BitchainConfigCircuitryDelegate)
+
     def build_routing_resources(self):
         """PRGA only supports uni-directional straight wires"""
         # Global routing
-        self.gen["clk"] = self.context.create_global(
-            'clk', is_clock=True, bind_to_position = (0, 1))
+        self.gen["clk"] = self.context.create_global('clk',
+                                                     is_clock=True,
+                                                     bind_to_position=(0, 1))
         # Segment routing (name, width, length)
         self.context.create_segment('L1', 10, 1)
-       
+
     def build_io_blocks(self):
         """Builds all of the IO blocks at the periphery of the FPGA"""
         # Create block - block name, capacity (#blocks per tile)
         iob = self.context.create_io_block('iob', 8)
-        
+
         # Create ports
         clkport = iob.create_global(self.gen["clk"])
         outpad = iob.create_input('outpad', 1)
         inpad = iob.create_output('inpad', 1)
-        
+
         # Instantiate modules inside IOB
         iff = iob.instantiate(self.context.primitives['flipflop'], 'iff')
         off = iob.instantiate(self.context.primitives['flipflop'], 'off')
-        
+
         # Connect IOB ports to internal modules
         #ioinst = iob.instances('io') # Built-in sub-instance io??
         iob.connect(clkport, iff.pins['clk'])
@@ -88,33 +88,34 @@ class FPGAGenTool(Tool):
                 continue
             self.iotiles[orient] = self.context.create_tile(
                 f"io_tile_{orient.name}", iob, orient)
-   
+
     def build_clbs(self):
         """Builds and assembles CLB tiles"""
         # Create clb
         clb = self.context.create_logic_block('clb')
-    
+
         # Create ports of the CLB
         clkport = clb.create_global(self.gen["clk"], Orientation.south)
         ceport = clb.create_input('ce', 1, Orientation.south)
         srport = clb.create_input('sr', 1, Orientation.south)
         cin = clb.create_input('cin', 1, Orientation.north)
         cout = clb.create_output('cout', 1, Orientation.south)
-        
+
         # Create internal LUTs for CLB
         for i in range(4):
             # "fraclut6sffc" is a multi-modal primitive specific to the
             # 'bitchain'-type configuration circuitry. It consists of a fractuable
             # 6-input LUT that can be used as two 5-input LUTs, two D-flipflops, and
             # a look-ahead carry chain
-            inst = clb.instantiate(self.context.primitives['fraclut6sffc'], 'cluster{}'.format(i))
+            inst = clb.instantiate(self.context.primitives['fraclut6sffc'],
+                                   'cluster{}'.format(i))
             # Create ports for clb
             ia = clb.create_input('ia' + str(i), 6, Orientation.west)
             ib = clb.create_input('ib' + str(i), 1, Orientation.west)
             oa = clb.create_output('oa' + str(i), 1, Orientation.east)
             ob = clb.create_output('ob' + str(i), 1, Orientation.east)
             q = clb.create_output('q' + str(i), 1, Orientation.east)
-            # Connect basic IO  
+            # Connect basic IO
             clb.connect(clkport, inst.pins['clk'])
             clb.connect(ceport, inst.pins['ce'])
             clb.connect(srport, inst.pins['sr'])
@@ -123,37 +124,42 @@ class FPGAGenTool(Tool):
             clb.connect(inst.pins['oa'], oa)
             clb.connect(inst.pins['ob'], ob)
             clb.connect(inst.pins['q'], q)
-            # Connect carry chain through BLEs  
-            clb.connect(cin, inst.pins['cin'], pack_pattern = 'carrychain')
+            # Connect carry chain through BLEs
+            clb.connect(cin, inst.pins['cin'], pack_pattern='carrychain')
             cin = inst.pins['cout']
-        clb.connect(cin, cout, pack_pattern = 'carrychain')
-        
+        clb.connect(cin, cout, pack_pattern='carrychain')
+
         # Create tile
         self.clbtile = self.context.create_tile('clb_tile', clb)
-    
+
     def build_custom_tiles(self):
         self.log("Custom tile step not yet implemented", LogLevel.WARNING)
-    
+
     def array_tiles(self):
         width = 3
         height = 3
         for x in range(width):
             for y in range(height):
                 if x == 0 and y > 0 and y < height - 1:
-                    self.context.top.instantiate_element(self.iotiles[Orientation.west], (x,y))
-                elif x == width - 1 and y > 0 and y < height -1:
-                    self.context.top.instantiate_element(self.iotiles[Orientation.east], (x,y))
+                    self.context.top.instantiate_element(
+                        self.iotiles[Orientation.west], (x, y))
+                elif x == width - 1 and y > 0 and y < height - 1:
+                    self.context.top.instantiate_element(
+                        self.iotiles[Orientation.east], (x, y))
                 elif y == 0:
-                    self.context.top.instantiate_element(self.iotiles[Orientation.south], (x,y))
+                    self.context.top.instantiate_element(
+                        self.iotiles[Orientation.south], (x, y))
                 elif y == height - 1:
-                    self.context.top.instantiate_element(self.iotiles[Orientation.north], (x,y))
+                    self.context.top.instantiate_element(
+                        self.iotiles[Orientation.north], (x, y))
                 else:
-                    self.context.top.instantiate_element(self.clbtile, (x,y))
-                    
+                    self.context.top.instantiate_element(self.clbtile, (x, y))
+
     def render_fpga(self):
         flow = Flow((
             # this pass automatically creates, places and populates connection/switch boxes
-            CompleteRoutingBox(BlockFCValue(BlockPortFCValue(0.25), BlockPortFCValue(0.1))),
+            CompleteRoutingBox(
+                BlockFCValue(BlockPortFCValue(0.25), BlockPortFCValue(0.1))),
 
             # this pass implements the configurable connections with switches
             CompleteSwitch(),
@@ -164,7 +170,7 @@ class FPGAGenTool(Tool):
 
             # this pass generates the RTL
             GenerateVerilog('rtl'),
-            
+
             # this pass injects bitchain-style configuration circuitry into the
             # architecture
             InjectBitchainConfigCircuitry(),
@@ -187,9 +193,11 @@ class FPGAGenTool(Tool):
 
             # this pass generates all the files needed to run Yosys
             GenerateYosysResources('syn'),
-            ))
+        ))
         flow.run(self.context)
         dirs = ["rtl", "vpr", "syn"]
         for d in dirs:
             if Path(d).is_dir():
-                shutil.move(d, os.path.join(self.get_db("internal.job_dir"), f"prga/{d}"))
+                shutil.move(
+                    d,
+                    os.path.join(self.get_db("internal.job_dir"), f"prga/{d}"))
