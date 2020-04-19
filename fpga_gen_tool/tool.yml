@@ -1,0 +1,10 @@
+# Name must match the class name in __init__.py
+tool: FPGAGenTool 
+namespace: fpga 
+
+# Dictionary containg all properties/attributes required by the tool
+properties:
+  dummy_prop:
+    description: "Additional jinja2 rendering templates."
+    default: []
+    schema: "list(file())"

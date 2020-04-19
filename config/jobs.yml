@@ -1,0 +1,5 @@
+jobs.build.tasks: [{tool: Make}]
+jobs.build.description: "Builds a makefile for running toolbox jobs"
+
+jobs.fpga_simple.tasks: [{tool: FPGAGenTool}]
+jobs.fpga_simple.description: "Builds a very simple FPGA for evaluation purposes"

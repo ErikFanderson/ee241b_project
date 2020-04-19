@@ -1,0 +1,4 @@
+tools:
+- toolbox/toolbox/tools/jinja_tool
+- toolbox-buildfile-tools/make
+- fpga_gen_tool
