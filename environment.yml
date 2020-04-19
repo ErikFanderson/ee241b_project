@@ -1,0 +1,11 @@
+name: fpga
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pyyaml
+  - jinja2
+  - future
+  - networkx
+  - lxml
+
