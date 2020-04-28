@@ -26,14 +26,31 @@ from prga.api.context import *
 from prga.api.config import *
 from prga.api.flow import *
 
+# NOTES
+"""
+This FPGA architecture assumes that there is only 1 global
+clock that is input from a single IO block input (there are
+a configurable number of IOBs in each IO tile, but the global
+clock will be attached to just 1 of these IOB inputs from a specific
+tile). 
+
+The CLBs have 0 connections on the north and west sides. This is
+to stay consistent with prior work where the generated tile is simply
+two CBs, one on the east and the other on the south, and a SB in the 
+SE corner.
+"""
+
 
 class FPGAGenTool(Tool):
     """Base jinja Tool w/ render function. Still Abstract"""
     def __init__(self, db: Database, log: Callable[[str, LogLevel], None]):
         """Creates an island-style FPGA using PRGA flow"""
         super(FPGAGenTool, self).__init__(db, log)
-        self.gen = {}
         self.context = None
+        self.clock = None
+        self.clbtile = None
+        self.iotiles = None
+        self.ns = self.get_db(self.get_namespace("FPGAGenTool"))
 
     def steps(self):
         return [
@@ -44,25 +61,31 @@ class FPGAGenTool(Tool):
 
     def build_context(self):
         """Make basic arch context"""
-        self.context = ArchitectureContext('top', 3, 3,
+        self.context = ArchitectureContext('top', self.ns["num_rows"],
+                                           self.ns["num_columns"],
                                            BitchainConfigCircuitryDelegate)
 
     def build_routing_resources(self):
         """PRGA only supports uni-directional straight wires"""
         # Global routing
-        self.gen["clk"] = self.context.create_global('clk',
-                                                     is_clock=True,
-                                                     bind_to_position=(0, 1))
+        r = self.ns["global_clock_row"]
+        c = self.ns["global_clock_column"]
+        self.clock = self.context.create_global('clk',
+                                                is_clock=True,
+                                                bind_to_position=(c, r))
         # Segment routing (name, width, length)
-        self.context.create_segment('L1', 10, 1)
+        for seg in self.ns["segments"]:
+            self.context.create_segment(seg["name"], seg["width"],
+                                        seg["length"])
 
     def build_io_blocks(self):
         """Builds all of the IO blocks at the periphery of the FPGA"""
         # Create block - block name, capacity (#blocks per tile)
-        iob = self.context.create_io_block('iob', 8)
+        iob = self.context.create_io_block(
+            'iob', self.ns["num_io_blocks_per_io_tile"])
 
         # Create ports
-        clkport = iob.create_global(self.gen["clk"])
+        clkport = iob.create_global(self.clock)
         outpad = iob.create_input('outpad', 1)
         inpad = iob.create_output('inpad', 1)
 
@@ -71,17 +94,17 @@ class FPGAGenTool(Tool):
         off = iob.instantiate(self.context.primitives['flipflop'], 'off')
 
         # Connect IOB ports to internal modules
-        #ioinst = iob.instances('io') # Built-in sub-instance io??
+        ioinst = iob.instances['io']  # Built-in sub-instance io??
         iob.connect(clkport, iff.pins['clk'])
-        #iob.connect(ioinst.pins['inpad'], iff.pins['D'])
+        iob.connect(ioinst.pins['inpad'], iff.pins['D'])
         iob.connect(iff.pins['Q'], inpad)
-        #iob.connect(ioinst.pins['inpad'], inpad)
+        iob.connect(ioinst.pins['inpad'], inpad)
         iob.connect(clkport, off.pins['clk'])
-        #iob.connect(off.pins['Q'], ioinst.pins['outpad'])
-        #iob.connect(outpad, ioinst.pins['outpad'])
+        iob.connect(off.pins['Q'], ioinst.pins['outpad'])
+        iob.connect(outpad, ioinst.pins['outpad'])
         iob.connect(outpad, off.pins['D'])
 
-        # Create IO tiles from
+        # Create IO tiles (N, E, S, W)
         self.iotiles = {}
         for orient in iter(Orientation):
             if orient.is_auto:
@@ -94,15 +117,17 @@ class FPGAGenTool(Tool):
         # Create clb
         clb = self.context.create_logic_block('clb')
 
-        # Create ports of the CLB
-        clkport = clb.create_global(self.gen["clk"], Orientation.south)
+        # Create inputs to CLB
+        clkport = clb.create_global(self.clock, Orientation.south)
         ceport = clb.create_input('ce', 1, Orientation.south)
         srport = clb.create_input('sr', 1, Orientation.south)
         cin = clb.create_input('cin', 1, Orientation.north)
+
+        # Create outputs to CLB
         cout = clb.create_output('cout', 1, Orientation.south)
 
         # Create internal LUTs for CLB
-        for i in range(4):
+        for i in range(self.ns["num_bles_per_clb"]):
             # "fraclut6sffc" is a multi-modal primitive specific to the
             # 'bitchain'-type configuration circuitry. It consists of a fractuable
             # 6-input LUT that can be used as two 5-input LUTs, two D-flipflops, and
@@ -136,20 +161,22 @@ class FPGAGenTool(Tool):
         self.log("Custom tile step not yet implemented", LogLevel.WARNING)
 
     def array_tiles(self):
-        width = 3
-        height = 3
-        for x in range(width):
-            for y in range(height):
-                if x == 0 and y > 0 and y < height - 1:
+        """All bottom IO tiles are south. All top IO tiles are north.
+        I.e. the corner tiles all point north or south
+        """
+        for x in range(self.ns["num_columns"]):
+            for y in range(self.ns["num_rows"]):
+                if x == 0 and y > 0 and y < self.ns["num_rows"] - 1:
                     self.context.top.instantiate_element(
                         self.iotiles[Orientation.west], (x, y))
-                elif x == width - 1 and y > 0 and y < height - 1:
+                elif x == self.ns["num_columns"] - 1 and y > 0 and y < self.ns[
+                        "num_rows"] - 1:
                     self.context.top.instantiate_element(
                         self.iotiles[Orientation.east], (x, y))
                 elif y == 0:
                     self.context.top.instantiate_element(
                         self.iotiles[Orientation.south], (x, y))
-                elif y == height - 1:
+                elif y == self.ns["num_rows"] - 1:
                     self.context.top.instantiate_element(
                         self.iotiles[Orientation.north], (x, y))
                 else:
@@ -158,8 +185,10 @@ class FPGAGenTool(Tool):
     def render_fpga(self):
         flow = Flow((
             # this pass automatically creates, places and populates connection/switch boxes
+            # First value is f_cbox_in, second value is f_cbox_out
             CompleteRoutingBox(
-                BlockFCValue(BlockPortFCValue(0.25), BlockPortFCValue(0.1))),
+                BlockFCValue(BlockPortFCValue(self.ns["fc_in"]),
+                             BlockPortFCValue(self.ns["fc_out"]))),
 
             # this pass implements the configurable connections with switches
             CompleteSwitch(),
@@ -195,6 +224,7 @@ class FPGAGenTool(Tool):
             GenerateYosysResources('syn'),
         ))
         flow.run(self.context)
+        # Move files into build directory
         dirs = ["rtl", "vpr", "syn"]
         for d in dirs:
             if Path(d).is_dir():

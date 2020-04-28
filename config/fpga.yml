@@ -1,0 +1,10 @@
+fpga.num_rows: 4 
+fpga.num_columns: 4 
+fpga.num_bles_per_clb: 10
+fpga.num_io_blocks_per_io_tile: 10 
+fpga.segments:
+- name: "L1"
+  width: 20
+  length: 1
+fpga.fc_in: 0.25
+fpga.fc_out: 0.1

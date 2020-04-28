@@ -4,7 +4,44 @@ namespace: fpga
 
 # Dictionary containg all properties/attributes required by the tool
 properties:
-  dummy_prop:
-    description: "Additional jinja2 rendering templates."
-    default: []
-    schema: "list(file())"
+  global_clock_row:
+    description: "Row of IO tile that global clock will come from"
+    default: 0 
+    schema: "int()"
+  global_clock_column:
+    description: "Column of IO tile that global clock will come from"
+    default: 0
+    schema: "int()"
+  num_columns:
+    description: "Number of columns in FPGA grid"
+    default: null 
+    schema: "int()"
+  num_rows:
+    description: "Number of rows in FPGA grid"
+    default: null 
+    schema: "int()"
+  num_bles_per_clb:
+    description: "Number of BLEs inside each CLB"
+    default: null
+    schema: "int()"
+  num_io_blocks_per_io_tile:
+    description: "Number of IO blocks inside each IO tile"
+    default: null
+    schema: "int()"
+  segments:
+    description: "List containing all channel segments list of {name, width, length}"
+    default: null
+    schema: "list(include('segment'))"
+  fc_in:
+    description: "Input flexibility for connection boxes"
+    default: null
+    schema: "num(min=0, max=1)"
+  fc_out:
+    description: "Output flexibility for connection boxes"
+    default: null
+    schema: "num(min=0, max=1)"
+schema_includes:
+  segment:
+    name: "str()"
+    width: "int()"
+    length: "int()"
