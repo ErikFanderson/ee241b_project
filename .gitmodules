@@ -7,3 +7,6 @@
 [submodule "toolbox-buildfile-tools"]
 	path = toolbox-buildfile-tools
 	url = git@github.com:ErikFanderson/toolbox-buildfile-tools.git
+[submodule "toolbox-cadence-tools"]
+	path = toolbox-cadence-tools
+	url = git@github.com:ErikFanderson/toolbox-cadence-tools.git
