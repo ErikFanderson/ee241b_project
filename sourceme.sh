@@ -14,6 +14,9 @@ fi
 cd toolbox; source sourceme.sh; cd $PRJPATH 
 
 # ASAP7 stuff
-cd vlsi; source sourceme.sh; cd $PRJPATH
+export HAMMER_HOME=$PWD/hammer
+source $HAMMER_HOME/sourceme.sh
 
-export PDK_DIR="/home/ff/ee241/spring20-labs/asap7PDK_r1p5"
+# Add liberate to path
+export ALTOSHOME=/tools/cadence/LIBERATE/LIBERATE181/
+export PATH=$ALTOSHOME/bin:$PATH

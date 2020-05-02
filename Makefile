@@ -17,6 +17,6 @@ tags:
 clean:
 	rm -rf build/ tags
 
-.PHONY: format clean export
-
 include Makefile.toolbox
+
+.PHONY: format clean export
