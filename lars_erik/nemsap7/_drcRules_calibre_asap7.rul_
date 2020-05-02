@@ -1,0 +1,27 @@
+//
+//  Rule file generated on Thu Apr 02 00:31:01 PDT 2020
+//     by Calibre Interactive - DRC (v2017.4_35.25)
+//
+//      *** PLEASE DO NOT MODIFY THIS FILE ***
+//
+//
+
+LAYOUT PATH  "custom_dff_R.calibre.db"
+LAYOUT PRIMARY "custom_dff_R"
+LAYOUT SYSTEM GDSII
+
+DRC RESULTS DATABASE "custom_dff_R.drc.results" ASCII 
+DRC MAXIMUM RESULTS 1000
+DRC MAXIMUM VERTEX 4096
+
+DRC CELL NAME YES CELL SPACE XFORM
+DRC SUMMARY REPORT "custom_dff_R.drc.summary" REPLACE HIER
+
+VIRTUAL CONNECT COLON NO
+VIRTUAL CONNECT REPORT NO
+
+DRC ICSTATION YES
+
+
+INCLUDE "/home/ff/ee241/spring20-labs/asap7PDK_r1p5/calibre/ruledirs/drc/drcRules_calibre_asap7.rul"
+

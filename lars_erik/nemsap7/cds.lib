@@ -10,13 +10,12 @@ DEFINE asap7_TechLib $PDK_DIR/cdslib/asap7_TechLib
 #------------------------------
 # Sample Standard Cell Library: 
 #------------------------------
-DEFINE asap7ssc7p5t $PDK_DIR/asap7ssc7p5t_05
+# shit was copied to nems lib
+#DEFINE asap7ssc7p5t $PDK_DIR/asap7ssc7p5t_05
 
 #-----------------------
 # User Libraries: 
 #-----------------------
-#Removed by ddDeleteObj: DEFINE custom_cell /scratch/lpt/ee241bS20/custom_cell
-DEFINE custom_cell /scratch/lpt/ee241bS20/custom_cell
 #Removed by ddDeleteObj: DEFINE nemsap7_std_cells /scratch/lpt/ee241bS20_lab3/nemsap7_std_cells
 #Removed by ddDeleteObj: DEFINE nemsap7_std_cells /scratch/lpt/ee241bS20_lab3/nemsap7_std_cells
 DEFINE asap7_nems /scratch/lpt/ee241bS20_lab3/asap7_nems
