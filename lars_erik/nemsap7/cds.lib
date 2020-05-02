@@ -1,0 +1,24 @@
+SOFTINCLUDE $CDS/share/cdssetup/cds.lib
+DEFINE sample  $CDS/tools/dfII/samples/cdslib/sample
+
+
+#-----------------------
+# ASAP7 TechLibrary:
+#-----------------------
+DEFINE asap7_TechLib $PDK_DIR/cdslib/asap7_TechLib
+
+#------------------------------
+# Sample Standard Cell Library: 
+#------------------------------
+# shit was copied to nems lib
+#DEFINE asap7ssc7p5t $PDK_DIR/asap7ssc7p5t_05
+
+#-----------------------
+# User Libraries: 
+#-----------------------
+#Removed by ddDeleteObj: DEFINE nemsap7_std_cells /scratch/lpt/ee241bS20_lab3/nemsap7_std_cells
+#Removed by ddDeleteObj: DEFINE nemsap7_std_cells /scratch/lpt/ee241bS20_lab3/nemsap7_std_cells
+DEFINE asap7_nems /scratch/lpt/ee241bS20_lab3/asap7_nems
+#Removed by ddDeleteObj: DEFINE asap7_nems_leffcp /scratch/lpt/ee241bS20_lab3/asap7_nems_leffcp
+#Removed by ddDeleteObj: DEFINE lefftest /scratch/lpt/ee241bS20_lab3/lefftest
+DEFINE asap7_std_cells /scratch/lpt/ee241bS20_lab3/asap7_std_cells

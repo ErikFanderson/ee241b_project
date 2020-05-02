@@ -1,0 +1,26 @@
+************************************************************************
+* auCdl Netlist:
+* 
+* Library Name:  asap7_nems
+* Top Cell Name: nem_sw
+* View Name:     schematic
+* Netlisted on:  May  2 00:58:59 2020
+************************************************************************
+
+*.EQUATION
+*.SCALE METER
+*.MEGA
+.PARAM
+
+
+
+************************************************************************
+* Library Name: asap7_nems
+* Cell Name:    nem_sw
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT nem_sw D PROG_HI PROG_LO S
+*.PININFO PROG_HI:I PROG_LO:I D:B S:B
+.ENDS
+

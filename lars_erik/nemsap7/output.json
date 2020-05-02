@@ -1,0 +1,4 @@
+{
+    "vlsi.builtins.is_complete": false,
+    "lvs.inputs.top_module": "decoder"
+}
