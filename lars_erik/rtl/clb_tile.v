@@ -13,10 +13,10 @@ module clb_tile (
     input wire clk,
 `ifdef LARS_ERIK 
     input wire cfg_clk,
-    input wire [0:0] cfg_scan_en,
-    input wire [0:0] cfg_lut_we,
-    input wire [0:0] cfg_scan_in,
-    output wire [0:0] cfg_scan_out
+    input wire cfg_scan_en,
+    input wire cfg_lut_we,
+    input wire cfg_scan_in,
+    output wire cfg_scan_out
 `else
     input wire cfg_clk,
     input wire [0:0] cfg_e,

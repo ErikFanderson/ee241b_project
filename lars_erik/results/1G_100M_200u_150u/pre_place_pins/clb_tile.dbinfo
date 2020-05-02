@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content>
+    <usage version="1.0.0">
+        <desc>Miscellaneous information</desc>
+    </usage>
+    <tool>
+        <name>Innovus</name>
+        <version>18.10-p002_1</version>
+    </tool>
+    <design>
+        <name>clb_tile</name>
+        <timestamp>Sat May  2 00:49:13 2020</timestamp>
+    </design>
+    <os>
+        <name>Linux</name>
+        <arch>x86_64</arch>
+        <host>eda-1.EECS.Berkeley.EDU</host>
+        <user>cs199-ccz</user>
+    </os>
+</content>

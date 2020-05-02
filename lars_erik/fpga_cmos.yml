@@ -44,8 +44,8 @@ vlsi.inputs.power_spec_type: "cpf"
 
 # Specify clock signals
 vlsi.inputs.clocks: [
-  {name: "clk", period: "5ns", uncertainty: "0.01ns"},
-  {name: "cfg_clk", period: "5ns", uncertainty: "0.01ns"}
+  {name: "clk", period: "1.025ns", uncertainty: "0.01ns"},
+  {name: "cfg_clk", period: "10ns", uncertainty: "0.1ns"}
 ]
 
 # Generate Make include to aid in flow 
@@ -75,20 +75,20 @@ par.generate_power_straps_options:
     power_utilization_M8: 1.0
     power_utilization_M9: 1.0
 
-## Placement Constraints
-## For ASAP7, all numbers must be 4x larger than final GDS
-#vlsi.inputs.placement_constraints:
-#  - path: "gcdGCDUnit_rtl"
-#    type: toplevel
-#    x: 0
-#    y: 0
-#    width: 30
-#    height: 30
-#    margins:
-#      left: 0
-#      right: 0
-#      top: 0
-#      bottom: 0
+# Placement Constraints
+# For ASAP7, all numbers must be 4x larger than final GDS
+vlsi.inputs.placement_constraints:
+  - path: "clb_tile"
+    type: toplevel
+    x: 0
+    y: 0
+    width: 200 
+    height: 150 
+    margins:
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
 #  - path: "gcdGCDUnit_rtl/place_obs_bottom" # This is an ASAP7 necessary hack
 #    type: obstruction
 #    obs_types: ["place"]
@@ -96,12 +96,27 @@ par.generate_power_straps_options:
 #    y: 0
 #    width: 30
 #    height: 1.08 # 1 core site tall, necessary to avoid shorts
-
 # Pin placement constraints
 vlsi.inputs.pin_mode: generated
 vlsi.inputs.pin.generate_mode: semi_auto
+
 vlsi.inputs.pin.assignments: [
-  {pins: "*", layers: ["M5", "M7"], side: "bottom"}
+  {pins: "clk", layers: ["M5", "M7"], side: "bottom"},
+  {pins: "arc_L1_x0y0s*", layers: ["M5", "M7"], side: "bottom"},
+  {pins: "arr_L1_u1y0s*", layers: ["M5", "M7"], side: "bottom"},
+  {pins: "arr_L1_x0y0w*", layers: ["M4", "M6"], side: "left"},
+  {pins: "arr_L1_x0v1w*", layers: ["M4", "M6"], side: "left"},
+  {pins: "arc_L1_x0v1w*", layers: ["M4", "M6"], side: "left"},
+  {pins: "arr_L1_x0y0e*", layers: ["M4", "M6"], side: "right"},
+  {pins: "arr_L1_x0v1e*", layers: ["M4", "M6"], side: "right"},
+  {pins: "arc_L1_x0v1e*", layers: ["M4", "M6"], side: "right"},
+  {pins: "arc_L1_x0y0n*", layers: ["M5", "M7"], side: "top"},
+  {pins: "arr_L1_u1y0n*", layers: ["M5", "M7"], side: "top"},
+  {pins: "cfg_clk", layers: ["M5", "M7"], side: "top"},
+  {pins: "cfg_scan_en", layers: ["M5", "M7"], side: "top"},
+  {pins: "cfg_lut_we", layers: ["M5", "M7"], side: "top"},
+  {pins: "cfg_scan_in", layers: ["M5", "M7"], side: "top"},
+  {pins: "cfg_scan_out", layers: ["M5", "M7"], side: "top"}
 ]
 
 # SRAM Compiler compiler options

@@ -1,0 +1,17 @@
+[05/02 00:19:38      0s] 
+[05/02 00:19:38      0s] Cadence Innovus(TM) Implementation System.
+[05/02 00:19:38      0s] Copyright 2018 Cadence Design Systems, Inc. All rights reserved worldwide.
+[05/02 00:19:38      0s] 
+[05/02 00:19:38      0s] Version:	v18.10-p002_1, built Tue May 29 19:19:55 PDT 2018
+[05/02 00:19:38      0s] Options:	-nowin -common_ui -files /scratch/cs199-ccz/ee241bS20/build/par-rundir/par.tcl 
+[05/02 00:19:38      0s] Date:		Sat May  2 00:19:38 2020
+[05/02 00:19:38      0s] Host:		eda-1.EECS.Berkeley.EDU (x86_64 w/Linux 3.10.0-1062.12.1.el7.x86_64) (4cores*16cpus*Intel(R) Xeon(R) CPU X5550 @ 2.67GHz 8192KB)
+[05/02 00:19:38      0s] OS:		CentOS Linux release 7.7.1908 (Core)
+[05/02 00:19:38      0s] 
+[05/02 00:19:38      0s] License:
+[05/02 00:19:38      0s] 		invs	Innovus Implementation System	18.1	checkout succeeded
+[05/02 00:19:38      0s] 		8 CPU jobs allowed with the current license(s). Use set_multi_cpu_usage to set your required CPU count.
+[05/02 00:19:46      7s] 
+[05/02 00:19:46      7s] ***************************************************************************************
+[05/02 00:19:46      7s] ***************************************************************************************
+[05/02 00:19:46      7s] 
