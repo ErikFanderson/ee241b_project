@@ -4,7 +4,7 @@ import fileinput
 #edits file to partition a vector of rows/cols into muxes
 i = 0
 N = 0
-with fileinput.FileInput('cbox_clb_x0y0etest.v', inplace=True, backup='.bak') as file:
+with fileinput.FileInput('../clb_tile/cbox_clb_x0y0etest.v', inplace=True, backup='.bak') as file:
     for line in file:
         if(line.find("cfg_mux4") >= 0): 
             N = 4

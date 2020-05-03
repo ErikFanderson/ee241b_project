@@ -80,269 +80,281 @@ module cbox_clb_x0y0e (
 
 
     cfg_mux4 sw_cbo_L1_x0y0n_1 (
+    cfg_mux4 sw_cbo_L1_x0y0n_1 (
+    cfg_mux4 sw_cbo_L1_x0y0n_1 (
+    cfg_mux4 sw_cbo_L1_x0y0n_1 (
         .i({blkp_clb_x0y0_q9, blkp_clb_x0y0_q6, blkp_clb_x0y0_ob3, blkp_clb_x0y0_ob0}),
         .o(sw_cbo_L1_x0y0n_1__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[3:0]),
+        .cols(cols[3:0])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_2 (
         .i({blkp_clb_x0y0_oa7, blkp_clb_x0y0_q3, blkp_clb_x0y0_q0}),
         .o(sw_cbo_L1_x0y0n_2__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[6:4]),
+        .cols(cols[6:4])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_3 (
         .i({blkp_clb_x0y0_ob7, blkp_clb_x0y0_oa4, blkp_clb_x0y0_oa1}),
         .o(sw_cbo_L1_x0y0n_3__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[9:7]),
+        .cols(cols[9:7])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_4 (
         .i({blkp_clb_x0y0_q7, blkp_clb_x0y0_ob4, blkp_clb_x0y0_ob1}),
         .o(sw_cbo_L1_x0y0n_4__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[12:10]),
+        .cols(cols[12:10])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_5 (
         .i({blkp_clb_x0y0_oa8, blkp_clb_x0y0_q4, blkp_clb_x0y0_q1}),
         .o(sw_cbo_L1_x0y0n_5__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[15:13]),
+        .cols(cols[15:13])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_6 (
         .i({blkp_clb_x0y0_ob8, blkp_clb_x0y0_oa5, blkp_clb_x0y0_oa2}),
         .o(sw_cbo_L1_x0y0n_6__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[18:16]),
+        .cols(cols[18:16])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_7 (
         .i({blkp_clb_x0y0_q8, blkp_clb_x0y0_ob5, blkp_clb_x0y0_ob2}),
         .o(sw_cbo_L1_x0y0n_7__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[21:19]),
+        .cols(cols[21:19])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_8 (
         .i({blkp_clb_x0y0_oa9, blkp_clb_x0y0_q5, blkp_clb_x0y0_q2}),
         .o(sw_cbo_L1_x0y0n_8__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[24:22]),
+        .cols(cols[24:22])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_9 (
         .i({blkp_clb_x0y0_ob9, blkp_clb_x0y0_oa6, blkp_clb_x0y0_oa3}),
         .o(sw_cbo_L1_x0y0n_9__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[27:25]),
+        .cols(cols[27:25])
 
         );
     cfg_mux4 sw_cbo_L1_x0y0n_10 (
+    cfg_mux4 sw_cbo_L1_x0y0n_10 (
+    cfg_mux4 sw_cbo_L1_x0y0n_10 (
+    cfg_mux4 sw_cbo_L1_x0y0n_10 (
         .i({blkp_clb_x0y0_q9, blkp_clb_x0y0_ob6, blkp_clb_x0y0_ob3, blkp_clb_x0y0_oa0}),
         .o(sw_cbo_L1_x0y0n_10__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[31:28]),
+        .cols(cols[31:28])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_11 (
         .i({blkp_clb_x0y0_q6, blkp_clb_x0y0_q3, blkp_clb_x0y0_ob0}),
         .o(sw_cbo_L1_x0y0n_11__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[34:32]),
+        .cols(cols[34:32])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_12 (
         .i({blkp_clb_x0y0_oa7, blkp_clb_x0y0_oa4, blkp_clb_x0y0_q0}),
         .o(sw_cbo_L1_x0y0n_12__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[37:35]),
+        .cols(cols[37:35])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_13 (
         .i({blkp_clb_x0y0_ob7, blkp_clb_x0y0_ob4, blkp_clb_x0y0_oa1}),
         .o(sw_cbo_L1_x0y0n_13__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[40:38]),
+        .cols(cols[40:38])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_14 (
         .i({blkp_clb_x0y0_q7, blkp_clb_x0y0_q4, blkp_clb_x0y0_ob1}),
         .o(sw_cbo_L1_x0y0n_14__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[43:41]),
+        .cols(cols[43:41])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_15 (
         .i({blkp_clb_x0y0_oa8, blkp_clb_x0y0_oa5, blkp_clb_x0y0_q1}),
         .o(sw_cbo_L1_x0y0n_15__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[46:44]),
+        .cols(cols[46:44])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_16 (
         .i({blkp_clb_x0y0_ob8, blkp_clb_x0y0_ob5, blkp_clb_x0y0_oa2}),
         .o(sw_cbo_L1_x0y0n_16__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[49:47]),
+        .cols(cols[49:47])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_17 (
         .i({blkp_clb_x0y0_q8, blkp_clb_x0y0_q5, blkp_clb_x0y0_ob2}),
         .o(sw_cbo_L1_x0y0n_17__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[52:50]),
+        .cols(cols[52:50])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_18 (
         .i({blkp_clb_x0y0_oa9, blkp_clb_x0y0_oa6, blkp_clb_x0y0_q2}),
         .o(sw_cbo_L1_x0y0n_18__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[55:53]),
+        .cols(cols[55:53])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0n_19 (
         .i({blkp_clb_x0y0_ob9, blkp_clb_x0y0_ob6, blkp_clb_x0y0_oa3}),
         .o(sw_cbo_L1_x0y0n_19__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[58:56]),
+        .cols(cols[58:56])
 
         );
     cfg_mux4 sw_cbo_L1_x0y0s_1 (
+    cfg_mux4 sw_cbo_L1_x0y0s_1 (
+    cfg_mux4 sw_cbo_L1_x0y0s_1 (
+    cfg_mux4 sw_cbo_L1_x0y0s_1 (
         .i({blkp_clb_x0y0_q9, blkp_clb_x0y0_q6, blkp_clb_x0y0_ob3, blkp_clb_x0y0_ob0}),
         .o(sw_cbo_L1_x0y0s_1__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[62:59]),
+        .cols(cols[62:59])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_2 (
         .i({blkp_clb_x0y0_oa7, blkp_clb_x0y0_q3, blkp_clb_x0y0_q0}),
         .o(sw_cbo_L1_x0y0s_2__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[65:63]),
+        .cols(cols[65:63])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_3 (
         .i({blkp_clb_x0y0_ob7, blkp_clb_x0y0_oa4, blkp_clb_x0y0_oa1}),
         .o(sw_cbo_L1_x0y0s_3__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[68:66]),
+        .cols(cols[68:66])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_4 (
         .i({blkp_clb_x0y0_q7, blkp_clb_x0y0_ob4, blkp_clb_x0y0_ob1}),
         .o(sw_cbo_L1_x0y0s_4__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[71:69]),
+        .cols(cols[71:69])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_5 (
         .i({blkp_clb_x0y0_oa8, blkp_clb_x0y0_q4, blkp_clb_x0y0_q1}),
         .o(sw_cbo_L1_x0y0s_5__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[74:72]),
+        .cols(cols[74:72])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_6 (
         .i({blkp_clb_x0y0_ob8, blkp_clb_x0y0_oa5, blkp_clb_x0y0_oa2}),
         .o(sw_cbo_L1_x0y0s_6__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[77:75]),
+        .cols(cols[77:75])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_7 (
         .i({blkp_clb_x0y0_q8, blkp_clb_x0y0_ob5, blkp_clb_x0y0_ob2}),
         .o(sw_cbo_L1_x0y0s_7__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[80:78]),
+        .cols(cols[80:78])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_8 (
         .i({blkp_clb_x0y0_oa9, blkp_clb_x0y0_q5, blkp_clb_x0y0_q2}),
         .o(sw_cbo_L1_x0y0s_8__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[83:81]),
+        .cols(cols[83:81])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_9 (
         .i({blkp_clb_x0y0_ob9, blkp_clb_x0y0_oa6, blkp_clb_x0y0_oa3}),
         .o(sw_cbo_L1_x0y0s_9__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[86:84]),
+        .cols(cols[86:84])
 
         );
     cfg_mux4 sw_cbo_L1_x0y0s_10 (
+    cfg_mux4 sw_cbo_L1_x0y0s_10 (
+    cfg_mux4 sw_cbo_L1_x0y0s_10 (
+    cfg_mux4 sw_cbo_L1_x0y0s_10 (
         .i({blkp_clb_x0y0_q9, blkp_clb_x0y0_ob6, blkp_clb_x0y0_ob3, blkp_clb_x0y0_oa0}),
         .o(sw_cbo_L1_x0y0s_10__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[90:87]),
+        .cols(cols[90:87])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_11 (
         .i({blkp_clb_x0y0_q6, blkp_clb_x0y0_q3, blkp_clb_x0y0_ob0}),
         .o(sw_cbo_L1_x0y0s_11__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[93:91]),
+        .cols(cols[93:91])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_12 (
         .i({blkp_clb_x0y0_oa7, blkp_clb_x0y0_oa4, blkp_clb_x0y0_q0}),
         .o(sw_cbo_L1_x0y0s_12__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[96:94]),
+        .cols(cols[96:94])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_13 (
         .i({blkp_clb_x0y0_ob7, blkp_clb_x0y0_ob4, blkp_clb_x0y0_oa1}),
         .o(sw_cbo_L1_x0y0s_13__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[99:97]),
+        .cols(cols[99:97])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_14 (
         .i({blkp_clb_x0y0_q7, blkp_clb_x0y0_q4, blkp_clb_x0y0_ob1}),
         .o(sw_cbo_L1_x0y0s_14__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[102:100]),
+        .cols(cols[102:100])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_15 (
         .i({blkp_clb_x0y0_oa8, blkp_clb_x0y0_oa5, blkp_clb_x0y0_q1}),
         .o(sw_cbo_L1_x0y0s_15__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[105:103]),
+        .cols(cols[105:103])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_16 (
         .i({blkp_clb_x0y0_ob8, blkp_clb_x0y0_ob5, blkp_clb_x0y0_oa2}),
         .o(sw_cbo_L1_x0y0s_16__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[108:106]),
+        .cols(cols[108:106])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_17 (
         .i({blkp_clb_x0y0_q8, blkp_clb_x0y0_q5, blkp_clb_x0y0_ob2}),
         .o(sw_cbo_L1_x0y0s_17__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[111:109]),
+        .cols(cols[111:109])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_18 (
         .i({blkp_clb_x0y0_oa9, blkp_clb_x0y0_oa6, blkp_clb_x0y0_q2}),
         .o(sw_cbo_L1_x0y0s_18__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[114:112]),
+        .cols(cols[114:112])
 
         );
     cfg_mux3 sw_cbo_L1_x0y0s_19 (
         .i({blkp_clb_x0y0_ob9, blkp_clb_x0y0_ob6, blkp_clb_x0y0_oa3}),
         .o(sw_cbo_L1_x0y0s_19__o),
-        .rows(rows[x:y]),
-        .cols(cols[x:y])
+        .rows(rows[117:115]),
+        .cols(cols[117:115])
 
         );
     
