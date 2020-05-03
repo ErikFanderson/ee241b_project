@@ -1,0 +1,517 @@
+
+Power Net Detected:
+    Voltage	    Name
+    0.00V	    VSS
+    0.63V	    VDD
+Using Power View: PVT_0P63V_100C.setup_view.
+Starting SI iteration 1 using Infinite Timing Windows
+#################################################################################
+# Design Stage: PostRoute
+# Design Name: clb_tile
+# Design Mode: 7nm
+# Analysis Mode: MMMC OCV 
+# Parasitics Mode: No SPEF/RCDB
+# Signoff Settings: SI On 
+#################################################################################
+#WARNING (NRDB-2012) The ENCLOSURE statement in layer V3 has the syntax for overhang values without END/SIDE keywords but contains CUTCLASS attribute and the cut defined in the CUTCLASS is rectangular. The new syntax 'END overhang1 SIDE overhang2' must be used in this case. Without the END/SIDE keywords, the larger value is assigned as end overhang and smaller value is assigned as side overhang. 
+#WARNING (NRDB-2012) The ENCLOSURE statement in layer V3 has the syntax for overhang values without END/SIDE keywords but contains CUTCLASS attribute and the cut defined in the CUTCLASS is rectangular. The new syntax 'END overhang1 SIDE overhang2' must be used in this case. Without the END/SIDE keywords, the larger value is assigned as end overhang and smaller value is assigned as side overhang. 
+#WARNING (NRDB-2012) The ENCLOSURE statement in layer V5 has the syntax for overhang values without END/SIDE keywords but contains CUTCLASS attribute and the cut defined in the CUTCLASS is rectangular. The new syntax 'END overhang1 SIDE overhang2' must be used in this case. Without the END/SIDE keywords, the larger value is assigned as end overhang and smaller value is assigned as side overhang. 
+#WARNING (NRFL-369) Ignoring MINIMUMCUT rules with number of cuts less than 2.
+#WARNING (NRFL-369) Ignoring MINIMUMCUT rules with number of cuts less than 2.
+#WARNING (NRDB-407) pitch for LAYER Pad is defined too small, reset to 1280
+#WARNING (NRDB-733) PIN A in CELL_VIEW BUFx16f_ASAP7_75t_SRAM does not have physical port.
+#WARNING (NRDB-733) PIN A in CELL_VIEW BUFx16f_ASAP7_75t_SL does not have physical port.
+#WARNING (NRDB-733) PIN A in CELL_VIEW BUFx16f_ASAP7_75t_L does not have physical port.
+#WARNING (NRDB-733) PIN A in CELL_VIEW BUFx16f_ASAP7_75t_R does not have physical port.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/clk of net clk because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/cfg_clk of net cfg_clk because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/cfg_scan_en of net cfg_scan_en because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/cfg_lut_we of net cfg_lut_we because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/cfg_scan_in of net cfg_scan_in because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#WARNING (NRIG-39) NanoRoute cannot route to pin PIN/cfg_scan_out of net cfg_scan_out because it might be a logical pin and does not have physical shapes. To fix the problem, check the pin connection in the netlist and ensure the pin shapes exist in the floorplan.
+#num needed restored net=0
+#need_extraction net=0 (total=9674)
+#WARNING (NRDB-976) The TRACK STEP 0.3840 for preferred direction tracks is smaller than the PITCH 8.1600 for LAYER Pad. This will cause routability problems for NanoRoute.
+#Start routing data preparation on Sun May  3 11:11:10 2020
+#
+#WARNING (NRDB-2040) Rule LEF_DEFAULT doesn't specify any vias that satisfy all of the area rules for layer M2 M3 M4 M5 M6 M7 M8 M9 
+#WARNING (NRDB-778) No multicut vias which meet all area rules for LAYER M8 are defined in RULE LEF_DEFAULT. When a LEF MINIMUMCUT rule is defined for a layer, you must define multicut vias for the layer in the LEF file. Edit your LEF file and read it in again.
+#WARNING (NRDB-778) No multicut vias which meet all area rules for LAYER M9 are defined in RULE LEF_DEFAULT. When a LEF MINIMUMCUT rule is defined for a layer, you must define multicut vias for the layer in the LEF file. Edit your LEF file and read it in again.
+#WARNING (NRDB-778) No multicut vias which meet all area rules for LAYER Pad are defined in RULE LEF_DEFAULT. When a LEF MINIMUMCUT rule is defined for a layer, you must define multicut vias for the layer in the LEF file. Edit your LEF file and read it in again.
+#Minimum voltage of a net in the design = 0.000.
+#Maximum voltage of a net in the design = 0.770.
+#Voltage range [0.000 - 0.630] has 9496 nets.
+#Voltage range [0.000 - 0.770] has 176 nets.
+#Voltage range [0.630 - 0.630] has 1 net.
+#Voltage range [0.000 - 0.000] has 1 net.
+# M1           V   Track-Pitch = 0.14400    Line-2-Via Pitch = 0.14400
+# M2           H   Track-Pitch = 0.14400    Line-2-Via Pitch = 0.14400
+# M3           V   Track-Pitch = 0.14400    Line-2-Via Pitch = 0.14400
+# M4           H   Track-Pitch = 0.19200    Line-2-Via Pitch = 0.19200
+# M5           V   Track-Pitch = 0.21600    Line-2-Via Pitch = 0.19200
+# M6           H   Track-Pitch = 0.28800    Line-2-Via Pitch = 0.41600
+#WARNING (NRAG-44) Track pitch is too small compared with line-2-via pitch.
+# M7           V   Track-Pitch = 0.28800    Line-2-Via Pitch = 0.41600
+#WARNING (NRAG-44) Track pitch is too small compared with line-2-via pitch.
+# M8           H   Track-Pitch = 0.38400    Line-2-Via Pitch = 0.32000
+# M9           V   Track-Pitch = 0.36000    Line-2-Via Pitch = 0.32000
+# Pad          H   Track-Pitch = 0.38400    Line-2-Via Pitch = 8.28000
+#WARNING (NRAG-44) Track pitch is too small compared with line-2-via pitch.
+#Regenerating Ggrids automatically.
+#Auto generating G-grids with size=15 tracks, using layer M3's pitch = 0.14400.
+#Using automatically generated G-grids.
+#Done routing data preparation.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 947.82 (MB), peak = 1056.96 (MB)
+#Extract in post route mode
+#
+#Start tQuantus RC extraction...
+#Start building rc corner(s)...
+#Number of RC Corner = 2
+#Corner PVT_0P77V_0C.hold_rc /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 0.000000 (real) 
+#Corner PVT_0P63V_100C.setup_rc /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 100.000000 (real) 
+#LISD -> M1 (1)
+#M1 -> M2 (2)
+#M2 -> M3 (3)
+#M3 -> M4 (4)
+#M4 -> M5 (5)
+#M5 -> M6 (6)
+#M6 -> M7 (7)
+#M7 -> M8 (8)
+#M8 -> M9 (9)
+#M9 -> Pad (10)
+#SADV_On
+# Corner(s) : 
+#PVT_0P77V_0C.hold_rc [ 0.00] 
+#PVT_0P63V_100C.setup_rc [100.00]
+# Corner id: 0
+# Layout Scale: 1.000000
+# Has Metal Fill model: yes
+# Temperature was set
+# Temperature : 0.000000
+# Ref. Temp   : 25.000000
+# Corner id: 1
+# Layout Scale: 1.000000
+# Has Metal Fill model: yes
+# Temperature was set
+# Temperature : 100.000000
+# Ref. Temp   : 25.000000
+#SADV_Off
+#
+#layer[1] tech width 288 != ict width 400.0
+#
+#layer[1] tech spc 288 != ict spc 464.0
+#
+#layer[4] tech width 384 != ict width 288.0
+#
+#layer[4] tech spc 384 != ict spc 288.0
+#
+#layer[6] tech width 512 != ict width 384.0
+#
+#layer[6] tech spc 512 != ict spc 384.0
+#
+#layer[8] tech width 640 != ict width 512.0
+#
+#layer[8] tech spc 640 != ict spc 512.0
+#
+#layer[10] tech spc 32000 != ict spc 640.0
+#total pattern=220 [20, 605]
+#Reading previously stored rc_model file ( /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/misc/rc_model.bin ) ...
+#found CAPMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06
+#found RESMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 0.000000 
+#found RESMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 100.000000 
+#number model r/c [2,1] [20,605] read
+#0 rcmodel(s) requires rebuild
+#Build RC corners: cpu time = 00:00:01, elapsed time = 00:00:02, memory = 970.72 (MB), peak = 1056.96 (MB)
+#Start building rc corner(s)...
+#Number of RC Corner = 2
+#Corner PVT_0P77V_0C.hold_rc /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 0.000000 (real) 
+#Corner PVT_0P63V_100C.setup_rc /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 100.000000 (real) 
+#LISD -> M1 (1)
+#M1 -> M2 (2)
+#M2 -> M3 (3)
+#M3 -> M4 (4)
+#M4 -> M5 (5)
+#M5 -> M6 (6)
+#M6 -> M7 (7)
+#M7 -> M8 (8)
+#M8 -> M9 (9)
+#M9 -> Pad (10)
+#SADV_On
+# Corner(s) : 
+#PVT_0P77V_0C.hold_rc [ 0.00] 
+#PVT_0P63V_100C.setup_rc [100.00]
+# Corner id: 0
+# Layout Scale: 1.000000
+# Has Metal Fill model: yes
+# Temperature was set
+# Temperature : 0.000000
+# Ref. Temp   : 25.000000
+# Corner id: 1
+# Layout Scale: 1.000000
+# Has Metal Fill model: yes
+# Temperature was set
+# Temperature : 100.000000
+# Ref. Temp   : 25.000000
+#SADV_Off
+#
+#layer[1] tech width 288 != ict width 400.0
+#
+#layer[1] tech spc 288 != ict spc 464.0
+#
+#layer[4] tech width 384 != ict width 288.0
+#
+#layer[4] tech spc 384 != ict spc 288.0
+#
+#layer[6] tech width 512 != ict width 384.0
+#
+#layer[6] tech spc 512 != ict spc 384.0
+#
+#layer[8] tech width 640 != ict width 512.0
+#
+#layer[8] tech spc 640 != ict spc 512.0
+#
+#layer[10] tech spc 32000 != ict spc 640.0
+#total pattern=220 [20, 605]
+#Reading previously stored rc_model file ( /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/misc/rc_model.bin ) ...
+#found CAPMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06
+#found RESMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 0.000000 
+#found RESMODEL /scratch/cs199-ccz/ee241bS20/build/tech-asap7-cache/extracted/ASAP7_PDKandLIB.tar/ASAP7_PDKandLIB_v1p5/asap7libs_24.tar.bz2/asap7libs_24/qrc/qrcTechFile_typ03_scaled4xV06 100.000000 
+#number model r/c [2,1] [20,605] read
+#0 rcmodel(s) requires rebuild
+#Build RC corners: cpu time = 00:00:01, elapsed time = 00:00:01, memory = 978.21 (MB), peak = 1056.96 (MB)
+#Length limit = 200 pitches
+#opt mode = 2
+#Start routing data preparation on Sun May  3 11:11:20 2020
+#
+#Minimum voltage of a net in the design = 0.000.
+#Maximum voltage of a net in the design = 0.770.
+#Voltage range [0.000 - 0.630] has 9496 nets.
+#Voltage range [0.000 - 0.770] has 176 nets.
+#Voltage range [0.630 - 0.630] has 1 net.
+#Voltage range [0.000 - 0.000] has 1 net.
+#Regenerating Ggrids automatically.
+#Auto generating G-grids with size=15 tracks, using layer M3's pitch = 0.14400.
+#Using automatically generated G-grids.
+#Done routing data preparation.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 971.82 (MB), peak = 1056.96 (MB)
+#Start routing data preparation on Sun May  3 11:11:20 2020
+#
+#Minimum voltage of a net in the design = 0.000.
+#Maximum voltage of a net in the design = 0.770.
+#Voltage range [0.000 - 0.630] has 9496 nets.
+#Voltage range [0.000 - 0.770] has 176 nets.
+#Voltage range [0.630 - 0.630] has 1 net.
+#Voltage range [0.000 - 0.000] has 1 net.
+#Regenerating Ggrids automatically.
+#Auto generating G-grids with size=15 tracks, using layer M3's pitch = 0.14400.
+#Using automatically generated G-grids.
+#Done routing data preparation.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 971.89 (MB), peak = 1056.96 (MB)
+#Init Design Signature = 1505872567
+#Start generate extraction boxes.
+#
+#Extract using 30 x 30 Hboxes
+#5x4 initial hboxes
+#Use area based hbox pruning.
+#0/0 hboxes pruned.
+#Complete generating extraction boxes.
+#Extract 12 hboxes with single thread on machine with  Xeon 2.67GHz 8192KB Cache 16CPU...
+#Process 0 special clock nets for rc extraction
+#0 temporary NDR added
+#WARNING (NREX-80) Net cfg_clk does not have a driver pin. It may have incomplete route.
+#Need to add unplaced ipin PIN:cfg_clk of net 10(cfg_clk) into rc tree
+#WARNING (NREX-80) Net cfg_scan_en does not have a driver pin. It may have incomplete route.
+#Need to add unplaced ipin PIN:cfg_scan_en of net 119(cfg_scan_en) into rc tree
+#WARNING (NREX-80) Net clk does not have a driver pin. It may have incomplete route.
+#Need to add unplaced ipin PIN:clk of net 137(clk) into rc tree
+#WARNING (NREX-80) Net cfg_lut_we does not have a driver pin. It may have incomplete route.
+#Need to add unplaced ipin PIN:cfg_lut_we of net 140(cfg_lut_we) into rc tree
+#Need to add unplaced ipin PIN:cfg_scan_out of net 1663(cfg_scan_out) into rc tree
+#Total 9445 nets were built. 235 nodes added to break long wires. 0 net(s) have incomplete routes.
+#Run Statistics for Extraction:
+#   Cpu time = 00:00:05, elapsed time = 00:00:05 .
+#   Increased memory =    49.88 (MB), total memory =  1021.86 (MB), peak memory =  1056.96 (MB)
+#Simplify RC tree: cpu time = 00:00:00, elapsed time = 00:00:00, memory = 1001.01 (MB), peak = 1056.96 (MB)
+#RC Statistics: 38099 Res, 21109 Ground Cap, 87 XCap (Edge to Edge)
+#RC V/H edge ratio: 0.51, Avg V/H Edge Length: 6421.77 (23079), Avg L-Edge Length: 13939.53 (10101)
+#Start writing rcdb into /tmp/innovus_temp_27725_eda-1.EECS.Berkeley.EDU_cs199-ccz_LHuhgA/nr27725_AGO6tD.rcdb.d
+#Finish writing rcdb with 47570 nodes, 38125 edges, and 196 xcaps
+#cpu time = 00:00:00, elapsed time = 00:00:01, memory = 1006.33 (MB), peak = 1056.96 (MB)
+Restoring parasitic data from file '/tmp/innovus_temp_27725_eda-1.EECS.Berkeley.EDU_cs199-ccz_LHuhgA/nr27725_AGO6tD.rcdb.d' ...
+Reading RCDB with compressed RC data.
+Reading RCDB with compressed RC data.
+Begin read_parasitics... (cpu: 0:00:00.0 real: 0:00:00.0 mem: 1247.906M)
+Following multi-corner parasitics specified:
+	/tmp/innovus_temp_27725_eda-1.EECS.Berkeley.EDU_cs199-ccz_LHuhgA/nr27725_AGO6tD.rcdb.d (rcdb)
+Reading RCDB with compressed RC data.
+		Cell clb_tile has rcdb /tmp/innovus_temp_27725_eda-1.EECS.Berkeley.EDU_cs199-ccz_LHuhgA/nr27725_AGO6tD.rcdb.d specified
+Cell clb_tile, hinst 
+Reading RCDB with compressed RC data.
+Done read_parasitics... (cpu: 0:00:00.6 real: 0:00:01.0 mem: 1223.906M)
+#
+#Restore RCDB.
+#
+#Complete tQuantus RC extraction.
+#Cpu time = 00:00:16
+#Elapsed time = 00:00:17
+#Increased memory = 56.22 (MB)
+#Total memory = 1004.05 (MB)
+#Peak memory = 1056.96 (MB)
+#
+#235 inserted nodes are removed
+#Final Design Signature = 1505872567
+AAE_INFO: 1 threads acquired from CTE.
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Start delay calculation (fullDC) (1 T). (MEM=1243)
+Reading RCDB with compressed RC data.
+Total number of fetched objects 9486
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 9674,  98.8 percent of the nets selected for SI analysis
+End delay calculation. (MEM=1374.29 CPU=0:00:03.0 REAL=0:00:03.0)
+End delay calculation (fullDC). (MEM=1337.67 CPU=0:00:04.4 REAL=0:00:08.0)
+Loading CTE timing window with TwFlowType 0...(CPU = 0:00:00.0, REAL = 0:00:00.0, MEM = 1337.7M)
+Add other clocks and setupCteToAAEClockMapping during iter 1
+Loading CTE timing window is completed (CPU = 0:00:00.1, REAL = 0:00:00.0, MEM = 1337.7M)
+Starting SI iteration 2
+Calculate early delays in OCV mode...
+Calculate late delays in OCV mode...
+Start delay calculation (fullDC) (1 T). (MEM=1305.79)
+Glitch Analysis: View PVT_0P63V_100C.setup_view -- Total Number of Nets Skipped = 4. 
+Glitch Analysis: View PVT_0P63V_100C.setup_view -- Total Number of Nets Analyzed = 9486. 
+Total number of fetched objects 9486
+AAE_INFO: Total number of nets for which stage creation was skipped for all views 0
+AAE_INFO-618: Total number of nets in the design is 9674,  1.5 percent of the nets selected for SI analysis
+End delay calculation. (MEM=1273.94 CPU=0:00:00.3 REAL=0:00:00.0)
+End delay calculation (fullDC). (MEM=1273.94 CPU=0:00:00.3 REAL=0:00:00.0)
+Load RC corner of view PVT_0P63V_100C.setup_view
+
+Begin Power Analysis
+
+    0.00V	    VSS
+    0.63V	    VDD
+
+Begin Processing Timing Library for Power Calculation
+
+Begin Processing Timing Library for Power Calculation
+
+
+
+Begin Processing Power Net/Grid for Power Calculation
+
+Ended Processing Power Net/Grid for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1209.11MB/2307.03MB/1209.12MB)
+
+Begin Processing Timing Window Data for Power Calculation
+
+clk(1000MHz) CK: assigning clock clk to net clk
+cfg_clk(100MHz) CK: assigning clock cfg_clk to net cfg_clk
+** INFO:  (VOLTUS_POWR-2054): Setting default frequency to the dominant frequency 100MHz.
+
+	To force set default frequency/period. Use either of the following command options:
+		set_power_analysis_mode        -default_frequency <frequency value>
+		set_default_switching_activity -period            <period value>.
+
+Ended Processing Timing Window Data for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1209.53MB/2307.03MB/1209.53MB)
+
+Begin Processing User Attributes
+
+Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1209.58MB/2307.03MB/1209.58MB)
+
+Begin Processing Signal Activity
+
+
+Starting Levelizing
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT)
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 10%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 20%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 30%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 40%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 50%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 60%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 70%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 80%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 90%
+
+Finished Levelizing
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT)
+
+Starting Activity Propagation
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT)
+** INFO:  (VOLTUS_POWR-1356): No default input activity has been set. Defaulting to 0.2.
+Use 'set_default_switching_activity -input_activity' command to change the default activity value.
+
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 10%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 20%
+
+Finished Activity Propagation
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT)
+Ended Processing Signal Activity: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1210.14MB/2307.03MB/1210.14MB)
+
+Begin Power Computation
+
+      ----------------------------------------------------------
+      # of cell(s) missing both power/leakage table: 0
+      # of cell(s) missing power table: 1
+      # of cell(s) missing leakage table: 0
+      # of MSMV cell(s) missing power_level: 0
+      ----------------------------------------------------------
+CellName                                  Missing Table(s)
+TIELOx1_ASAP7_75t_SL                      internal power, 
+
+
+
+Starting Calculating power
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT)
+ ... Calculating switching power
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 10%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 20%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 30%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 40%
+2020-May-03 11:11:38 (2020-May-03 18:11:38 GMT): 50%
+ ... Calculating internal and leakage power
+2020-May-03 11:11:39 (2020-May-03 18:11:39 GMT): 60%
+2020-May-03 11:11:39 (2020-May-03 18:11:39 GMT): 70%
+2020-May-03 11:11:39 (2020-May-03 18:11:39 GMT): 80%
+2020-May-03 11:11:40 (2020-May-03 18:11:40 GMT): 90%
+
+Finished Calculating power
+2020-May-03 11:11:40 (2020-May-03 18:11:40 GMT)
+Ended Power Computation: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=1210.64MB/2307.03MB/1210.64MB)
+
+Begin Processing User Attributes
+
+Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=1210.64MB/2307.03MB/1210.70MB)
+
+Ended Power Analysis: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=1210.70MB/2307.03MB/1210.70MB)
+
+Begin Boundary Leakage Calculation
+Ended Boundary Leakage Calculation: (cpu=0:00:00, real=0:00:00,
+mem(process/total/peak)=1210.71MB/2307.03MB/1210.71MB)
+Begin Static Power Report Generation
+*----------------------------------------------------------------------------------------
+*	Innovus 19.11-s128_1 (64bit) 08/20/2019 20:54 (Linux 2.6.32-431.11.2.el6.x86_64)
+*	
+*
+* 	Date & Time:	2020-May-03 11:11:40 (2020-May-03 18:11:40 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: clb_tile
+*
+*	Liberty Libraries used:
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SIMPLE_RVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SIMPLE_LVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SIMPLE_SLVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SIMPLE_SRAM_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_AO_RVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_AO_LVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_AO_SLVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_AO_SRAM_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_OA_RVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_OA_LVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_OA_SLVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_OA_SRAM_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SEQ_RVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SEQ_LVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SEQ_SLVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_SEQ_SRAM_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_INVBUF_RVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_INVBUF_LVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_INVBUF_SLVT_SS.lib
+*	        PVT_0P63V_100C.setup_view: /scratch/cs199-ccz/ee241bS20/build/par-rundir/post_scale_final_gds/libs/mmmc/asap7sc7p5t_24_INVBUF_SRAM_SS.lib
+*
+*	Parasitic Files used:
+*
+*       Power View : PVT_0P63V_100C.setup_view
+*
+*       User-Defined Activity : N.A.
+*
+*       Activity File: N.A.
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: 0.200000
+*
+*       Primary Input Activity: 0.200000
+*
+*       Default icg ratio: N.A.
+*
+*       Global Comb ClockGate Ratio: N.A.
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-12 secs
+*
+*       report_power
+*
+-----------------------------------------------------------------------------------------
+*
+
+
+
+Total Power
+-----------------------------------------------------------------------------------------
+Total Internal Power:        0.15437872 	   19.9302%
+Total Switching Power:       0.04098672 	    5.2914%
+Total Leakage Power:         0.57923168 	   74.7784%
+Total Power:                 0.77459712
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                        0.1135    0.008137      0.3688      0.4905       63.32
+Macro                                  0           0           0           0           0
+IO                                     0           0   2.238e-07   2.238e-07   2.889e-05
+Combinational                    0.03605     0.03285      0.2102      0.2791       36.03
+Clock (Combinational)           0.002688           0   3.971e-06    0.002692      0.3475
+Clock (Sequential)              0.002159           0   0.0001597    0.002318      0.2993
+-----------------------------------------------------------------------------------------
+Total                             0.1544     0.04099      0.5792      0.7746         100
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+VDD                      0.63     0.1544     0.04099      0.5792      0.7746         100
+
+
+Clock                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+clk                             0.002688           0   3.971e-06    0.002692      0.3475
+cfg_clk                         0.002159           0   0.0001597    0.002318      0.2993
+-----------------------------------------------------------------------------------------
+Total                           0.004847           0   0.0001636     0.00501      0.6468
+-----------------------------------------------------------------------------------------
+Clock: clk
+Clock Period: 0.010000 usec 
+Clock Toggle Rate:  1999.9999 Mhz 
+Clock Static Probability:  0.5000
+  
+Clock: cfg_clk
+Clock Period: 0.010000 usec 
+Clock Toggle Rate:   200.0000 Mhz 
+Clock Static Probability:  0.5000
+  
+ 
+ 
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+*              Highest Average Power: blkinst/cluster0/q_reg[0] (SDFLx1_ASAP7_75t_SL):         0.001419
+*              Highest Leakage Power: FE_PHC3054_sram_rd_data_1 (BUFx12f_ASAP7_75t_SL):        0.0005058
+*                Total Cap:      8.7417e-12 F
+*                Total instances in design:  9371
+*                Total instances in design with no power:     0
+*                Total instances in design with no activty:     0
+
+*                Total Fillers and Decap:     0
+-----------------------------------------------------------------------------------------
+ 
+Ended Static Power Report Generation: (cpu=0:00:00, real=0:00:00,
+mem(process/total/peak)=1214.16MB/2309.78MB/1214.18MB)
+
