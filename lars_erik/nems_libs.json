@@ -1,0 +1,18 @@
+{
+    "vlsi.technology.extra_libraries": [
+        {
+            "library": {
+                "name": "asap7_nems",
+                "lef file": "~/ee241b_project/nemsap7/nemsw_abstract.lef",
+                "gds file": "~/ee241b_project/nemsap7/nem_sw.gds",
+                "provides": [
+                    {
+                    }
+                ],
+                "supplies": {
+                },
+            }
+        }
+    ],
+    "vlsi.technology.extra_libraries_meta": "append"
+}
