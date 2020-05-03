@@ -4,4 +4,5 @@ tools:
 - toolbox-cadence-tools/abstract
 - toolbox-cadence-tools/liberate
 - toolbox-cadence-tools/cadence_tool
+- toolbox-cadence-tools/reports
 - fpga_gen_tool
