@@ -1,0 +1,8 @@
+cUiMoveCellToBin {nem_sw} {Block}
+cUiSelectCellP {nem_sw}
+cUiSetViewStatus {nem_sw} {layout} {1}
+cUiSetViewStatus {nem_sw} {logical} {0}
+cUiSetViewStatus {nem_sw} {abstract.pin} {0}
+cUiSetViewStatus {nem_sw} {abstract.ext} {0}
+cUiSetViewStatus {nem_sw} {abstract} {3}
+cUiSetViewStatus {nem_sw} {abstract.ver} {0}

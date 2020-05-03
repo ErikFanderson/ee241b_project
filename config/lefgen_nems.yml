@@ -1,11 +1,12 @@
 #----------------------------------------------------------
 # Setup
 #----------------------------------------------------------
+#Need to verify abstract path
 abstract.bin: "/tools/cadence/ICADV/ICADV123/tools/dfII/bin/abstract"
 abstract.execute: true 
-abstract.cds_path: "../cadence-tstech180"
-abstract.library_path: "${abstract.cds_path}/libraries/superswitch"
-abstract.cell: "MemsDriver"
+abstract.cds_path: "../lars_erik/nemsap7"
+abstract.library_path: "${abstract.cds_path}/asap7_nems"
+abstract.cell: "nem_sw"
 abstract.cell_bin: "Block"
 abstract.pr_cell_class: "block"
 abstract.verilog_dummy_files: []
@@ -14,8 +15,7 @@ abstract.metal_stack: [
   "METAL2", 
   "METAL3", 
   "METAL4", 
-  "METAL5", 
-  "METAL6"
+  "METAL5"
 ]
 #abstract.replay_template: "abstract.replay.old"
 #----------------------------------------------------------
@@ -23,15 +23,17 @@ abstract.metal_stack: [
 #----------------------------------------------------------
 # Pins step
 #----------------------------------------------------------
-abstract.pins_power_names: "^(VDD)|(HVDD)$"
-abstract.pins_ground_names: "^VSS$"
+#no explicit pwr/gnd
+#abstract.pins_power_names: "^(VDD)|(HVDD)$"
+#abstract.pins_ground_names: "^VSS$"
+#might have to change D/S to pwr pins for inout?
+abstract.pins_analog_names: "^(D)|(S)|(PROG_HI)|(PROG_LO)$"
 abstract.pins_text_pins_map: [
   "(METAL1 METAL1)",
   "(METAL2 METAL2)",
   "(METAL3 METAL3)",
   "(METAL4 METAL4)",
   "(METAL5 METAL5)",
-  "(METAL6 METAL6)"
 ]
 abstract.pins_text_promote_level: 0
 abstract.pins_boundary_layers: "(prBoundary drawing)"
@@ -42,26 +44,32 @@ abstract.pins_boundary_layers: "(prBoundary drawing)"
 #----------------------------------------------------------
 abstract.extract_connectivity_layers: [
   "(METAL1 METAL1)", 
-  "(METAL2 METAL2)"
+  "(METAL2 METAL2)",
+  "(METAL3 METAL3)",
+  "(METAL4 METAL4)",
+  "(METAL5 METAL5)",
 ]
 abstract.extract_layers_sig: [
   "(METAL1 METAL1)", 
-  "(METAL2 METAL2)"
+  "(METAL2 METAL2)",
+  "(METAL3 METAL3)",
+  "(METAL4 METAL4)",
+  "(METAL5 METAL5)"
 ]
 abstract.extract_pin_layers_sig: [
-  "METAL1", 
-  "METAL2"
+  "METAL4", 
+  "METAL5"
 ]
 abstract.extract_num_levels_sig: 32 
-abstract.extract_layers_pwr: [
-  "(METAL1 METAL1)", 
-  "(METAL2 METAL2)"
-]
-abstract.extract_pin_layers_pwr: [
-  "METAL1", 
-  "METAL2"
-]
-abstract.extract_num_levels_pwr: 32 
+#abstract.extract_layers_pwr: [
+#  "(METAL1 METAL1)", 
+#  "(METAL2 METAL2)"
+#]
+#abstract.extract_pin_layers_pwr: [
+#  "METAL1", 
+#  "METAL2"
+#]
+#abstract.extract_num_levels_pwr: 32 
 #----------------------------------------------------------
 
 #----------------------------------------------------------

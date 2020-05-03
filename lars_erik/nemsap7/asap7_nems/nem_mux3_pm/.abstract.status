@@ -1,0 +1,6 @@
+cUiSetViewStatus {nem_mux3_pm} {layout} {0}
+cUiSetViewStatus {nem_mux3_pm} {logical} {0}
+cUiSetViewStatus {nem_mux3_pm} {abstract.pin} {0}
+cUiSetViewStatus {nem_mux3_pm} {abstract.ext} {0}
+cUiSetViewStatus {nem_mux3_pm} {abstract} {0}
+cUiSetViewStatus {nem_mux3_pm} {abstract.ver} {0}
