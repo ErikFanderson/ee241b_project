@@ -13,10 +13,6 @@ fi
 # Toolbox 
 cd toolbox; source sourceme.sh; cd $PRJPATH 
 
-# ASAP7 stuff
-export HAMMER_HOME=$PWD/hammer
-source $HAMMER_HOME/sourceme.sh
-
 # Add liberate to path
 export ALTOSHOME=/tools/cadence/LIBERATE/LIBERATE181/
 export PATH=$ALTOSHOME/bin:$PATH

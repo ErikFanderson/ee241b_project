@@ -3,3 +3,9 @@ jobs.build.description: "Builds a makefile for running toolbox jobs"
 
 jobs.fpga.tasks: [{tool: FPGAGenTool}]
 jobs.fpga.description: "Builds a very simple FPGA for evaluation purposes"
+
+jobs.lef.tasks: [{tool: AbstractTool, additional_configs: ["config/lefgen_nems.yml"]}]
+jobs.lef.description: "Generates a .lef for the NEMs device"
+
+jobs.lib.tasks: [{tool: LiberateTool, additional_configs: ["config/libgen_nems.yml"]}]
+jobs.lib.description: "Generates a .lib for the NEMs device"

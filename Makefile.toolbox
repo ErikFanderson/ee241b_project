@@ -2,7 +2,7 @@
 # Target "build" 
 #----------------------------------------------------------
 build: 
-	toolbox-cli -t tools.yml -c config/jobs.yml -c config/fpga.yml --color -l info -b build -o toolbox build	
+	toolbox-cli -t tools.yml -c config/fpga.yml -c config/cds.yml -c config/jobs.yml --color -l info -b build -o toolbox build	
 .PHONY: build
 #----------------------------------------------------------
 
@@ -10,8 +10,24 @@ build:
 # Target "fpga" 
 #----------------------------------------------------------
 fpga: 
-	toolbox-cli -t tools.yml -c config/jobs.yml -c config/fpga.yml --color -l info -b build -o toolbox fpga	
+	toolbox-cli -t tools.yml -c config/fpga.yml -c config/cds.yml -c config/jobs.yml --color -l info -b build -o toolbox fpga	
 .PHONY: fpga
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "lef" 
+#----------------------------------------------------------
+lef: 
+	toolbox-cli -t tools.yml -c config/fpga.yml -c config/cds.yml -c config/jobs.yml --color -l info -b build -o toolbox lef	
+.PHONY: lef
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "lib" 
+#----------------------------------------------------------
+lib: 
+	toolbox-cli -t tools.yml -c config/fpga.yml -c config/cds.yml -c config/jobs.yml --color -l info -b build -o toolbox lib	
+.PHONY: lib
 #----------------------------------------------------------
 
 #----------------------------------------------------------
@@ -23,6 +39,8 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "build    Builds a makefile for running toolbox jobs"
 	@echo "fpga     Builds a very simple FPGA for evaluation purposes"
+	@echo "lef      Generates a .lef for the NEMs device"
+	@echo "lib      Generates a .lib for the NEMs device"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
