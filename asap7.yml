@@ -1,0 +1,20 @@
+# Technology Setup
+# Technology used is ASAP7
+vlsi.core.technology: asap7
+vlsi.core.node: 7
+technology.asap7.tarball_dir: "/home/ff/ee241/spring20-labs/"
+
+# General Hammer Inputs
+vlsi.inputs.supplies.VDD: "0.7 V"
+
+# Specify the setup and hold corners for ASAP7
+vlsi.inputs.mmmc_corners: [
+  {name: "PVT_0P63V_100C", type: "setup", voltage: "0.63 V", temp: "100 C"},
+  {name: "PVT_0P77V_0C", type: "hold", voltage: "0.77 V", temp: "0 C"}
+]
+
+# SRAM Compiler compiler options
+vlsi.core.sram_generator_tool: "sram_compiler"
+# You should specify a location for the SRAM generator in the tech plugin
+vlsi.core.sram_generator_tool_path: ["hammer/src/hammer-vlsi/technology/asap7"]
+vlsi.core.sram_generator_tool_path_meta: "append"

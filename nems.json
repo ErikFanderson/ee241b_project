@@ -1,0 +1,12 @@
+[
+{
+  "type" : "nems",
+  "name" : "nem_sw",
+  "ports" : [ {
+    "channel terminal 1 port name" : "D",
+    "channel terminal 2 port name" : "S",
+    "PROG_HI port name" : "G",
+    "PROG_LO port name" : "B"    
+  } ],
+  "extra ports" : []
+}]

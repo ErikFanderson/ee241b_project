@@ -23,7 +23,7 @@ module cbox_clb_x0y0w (
     output wire [5:0] blkp_clb_x0y0_ia9,
     output wire [0:0] blkp_clb_x0y0_ib9,
     input wire [699:0] rows,
-    input wire [699:0] cols,
+    input wire [699:0] cols
     );
     
     wire [0:0] sw_blkp_clb_x0y0_ia0_0__o;

@@ -7,10 +7,8 @@ module cbox_clb_x0y0s (
     input wire [0:0] blkp_clb_x0y0_cout,
     output wire [19:0] cbo_L1_x0v1e,
     output wire [19:0] cbo_L1_x0v1w,
-    input wire [7:0] cfg_d
     input wire [19:0] rows,
-    input wire [19:0] cols,
-
+    input wire [19:0] cols
     );
     
     wire [0:0] sw_blkp_clb_x0y0_ce_0__o;

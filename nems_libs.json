@@ -1,0 +1,20 @@
+{
+    "vlsi.technology.extra_libraries": [
+        {
+            "library": {
+                "name": "nem_sw",
+                "lef file": "/scratch/lpt/ee241bS20/lars_erik/nemsap7/nemsw_abstract.lef",
+                "gds file": "/scratch/lpt/ee241bS20/lars_erik/nemsap7/nem_sw.gds",
+                "nldm liberty file": "/scratch/lpt/ee241bS20/lars_erik/nem_sw_0p7v_25c_typical.lib",
+                "provides": [
+                    {
+                    }
+                ],
+                "supplies": {
+                }
+            }
+        }
+    ],
+    "vlsi.technology.extra_libraries_meta": "append"
+}
+

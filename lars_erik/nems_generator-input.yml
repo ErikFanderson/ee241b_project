@@ -1,2 +1,0 @@
-vlsi.inputs.nems_parameters: '~/ee241b_project/lars_erik/nems.json'
-vlsi.inputs.nems_parameters_meta: ["transclude", "json2list"]

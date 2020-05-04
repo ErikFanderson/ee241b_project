@@ -1,0 +1,9 @@
+vlsi.core.sim_tool: "vcs"
+vlsi.core.sim_tool_path: ["hammer-synopsys-plugins/sim"]
+vlsi.core.sim_tool_path_meta: "append"
+sim.vcs:
+  version: "I-2014.03-SP1"
+  vcs_bin: "${synopsys.synopsys_home}/${sim.vcs.version}/vcs/bin/vcs"
+  vcs_bin_meta: lazysubst
+  vcs_home: "${synopsys.synopsys_home}/${sim.vcs.version}/vcs"
+  vcs_home_meta: lazysubst
