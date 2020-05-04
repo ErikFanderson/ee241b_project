@@ -253,25 +253,35 @@ module clb_tile (
     
     assign cfg_scan_out = sram_input_cfg[38];
     
-    // Fake Memory - i.e. flop array
-    reg [31:0] flop_array [15:0];
-    reg [31:0] output_flop_array;
-
-    // Write
-    always @(posedge cfg_clk) begin
-        if (~sram_input_cfg[4] && ~sram_input_cfg[6]) begin
-            flop_array[sram_input_cfg[3:0]] <= sram_input_cfg[38:7];
-        end
-    end
+    // Fake memory
+    ff_array fake_mem (
+        .clk(cfg_clk),
+        .in(sram_input_cfg[38:7]),
+        .out(sram_rd_data),
+        .wen(~sram_input_cfg[6]),
+        .address(sram_input_cfg[3:0]),
+        .cs(sram_input_cfg[4])
+    );
     
-    // Read 
-    always @(posedge cfg_clk) begin
-        if (~sram_input_cfg[4] && sram_input_cfg[6]) begin
-            output_flop_array <= flop_array[sram_input_cfg[3:0]];
-        end
-    end
+    //// Fake Memory - i.e. flop array
+    //reg [31:0] flop_array [15:0];
+    //reg [31:0] output_flop_array;
 
-    assign sram_rd_data = output_flop_array;
+    //// Write
+    //always @(posedge cfg_clk) begin
+    //    if (~sram_input_cfg[4] && ~sram_input_cfg[6]) begin
+    //        flop_array[sram_input_cfg[3:0]] <= sram_input_cfg[38:7];
+    //    end
+    //end
+    //
+    //// Read 
+    //always @(posedge cfg_clk) begin
+    //    if (~sram_input_cfg[4] && sram_input_cfg[6]) begin
+    //        output_flop_array <= flop_array[sram_input_cfg[3:0]];
+    //    end
+    //end
+
+    //assign sram_rd_data = output_flop_array;
 
     //// Instantiate SRAM (2RW - 16x32) - Just don't use 1 port...
     //SRAM2RW16x32 sram_input_cfg (
@@ -361,6 +371,30 @@ module clb_tile (
     assign arc_L1_x0y0s = cbinst_x0y0e__cbo_L1_x0y0s;
     assign arc_L1_x0v1e = cbinst_x0y0s__cbo_L1_x0v1e;
     assign arc_L1_x0v1w = cbinst_x0y0s__cbo_L1_x0v1w;
+
+endmodule
+
+module ff_array(clk, in, out, wen, cs, address);
+    input wire clk;
+    input wire [31:0] in;
+    output wire [31:0] out;
+    input wire wen;
+    input wire cs;
+    input wire [3:0] address;
+
+    // Fake Memory - i.e. flop array
+    reg [31:0] flop_array [15:0];
+    reg [31:0] output_flop_array;
+
+    // Write
+    always @(posedge clk) begin
+        if (cs && wen) begin
+            flop_array[address] <= in;
+        end
+    end
+    
+    
+    assign out = flop_array[address]; 
 
 endmodule
 `default_nettype wire 
