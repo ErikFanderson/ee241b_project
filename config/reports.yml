@@ -1,0 +1,4 @@
+reports.area.file: "lars_erik/results/1G_100M_200u_150u_fake_mem/area.rpt"
+#reports.area.file: "lars_erik/nems_area.rpt"
+reports.area.top: "clb_tile"
+reports.area.plot: true 

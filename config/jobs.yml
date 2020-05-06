@@ -9,3 +9,6 @@ jobs.lef.description: "Generates a .lef for the NEMs device"
 
 jobs.lib.tasks: [{tool: LiberateTool, additional_configs: ["config/libgen_nems.yml"]}]
 jobs.lib.description: "Generates a .lib for the NEMs device"
+
+jobs.reports.tasks: [{tool: CadenceReportTool, additional_configs: ["config/reports.yml"]}]
+jobs.reports.description: "Plots design report information"

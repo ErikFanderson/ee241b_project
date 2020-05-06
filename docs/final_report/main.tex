@@ -22,6 +22,7 @@
 \documentclass[twoside,twocolumn]{article}
 
 \usepackage{graphicx}
+\usepackage{siunitx}
 
 \usepackage{blindtext} % Package to generate dummy text throughout this template 
 
@@ -89,12 +90,12 @@
 \renewcommand{\maketitlehookd}{%
 \begin{abstract}
 \noindent FPGAs, like all reconfigurable systems, exhibit significantly
-worse performance than their 1:1 ASIC counterparts. This disparity is primarily due
+worse performance than their ASIC counterparts. This disparity is primarily due
 to the extremely flexible yet power-hungry and physically large programmable routing
 network inside the FPGA. To alleviate this problem, several versions of CMOS compatible 
 Back-End-Of-Line (BEOL) mechanical relays have been proposed to create denser 
 and more efficient programmable interconnects. In this paper, we analyze the area benefits of 
-a vertical relay based FPGA (rFPGA) with respect to the traditional CMOS-only FPGA, 
+a relay based FPGA (rFPGA) with respect to the traditional CMOS-only FPGA, 
 and lay the groundwork for future power/performance analysis. 
 Our designs will use ASAP7 \cite{clark_asap7_2016}, 
 a predictive 7nm PDK, to realistically gauge the benefits and drawbacks of rFPGAs 
@@ -114,9 +115,9 @@ in the modern semiconductor landscape.
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}
-Field Programmable Gate Arrays (FPGAs) have long been used to enable rapid prototyping of digital systems pre-tapeout of Application Specific Integrated Circuits (ASICs)\cite{8187326}. The framework they provide for high-performance reconfigurable digital systems is now proving useful for end-use applications including ML-acceleration, cryptocurrency mining, high-frequency stock trading, and software-defined radios. FPGA demand is predicted to continue rising as these protoyping and end-use markets increase in demand.
+Field Programmable Gate Arrays (FPGAs) have long been used to enable rapid prototyping of digital systems pre-tapeout of Application Specific Integrated Circuits (ASICs)\cite{8187326}. The framework they provide for high-performance reconfigurable digital systems is now proving useful for end-use applications including ML-acceleration, cryptocurrency mining, high-frequency stock trading, and software-defined radios. FPGA demand is predicted to continue rising as these prototyping and end-use markets increase in demand.
 
-To enable this flexibility, FPGA-based systems are much more demanding than their ASIC counterparts. FPGAs come with larger die area requirements, delay, and dynamic power consumption. These factors increase the cost of FPGA-based systems and lower their potential performance over ASIC-based systems. Recently, CMOS compatible devices have been developed that could mitigate these area/power/performance drawbacks.  Nano-Electro-Mechanical-Systems (NEMS) provide a promising, easily-integratable way to further FPGA-based systems. But first, a look at where all this overhead comes from in FPGAs.
+To enable this flexibility, FPGA-based systems are much more demanding than their ASIC counterparts. FPGAs come with larger die area requirements, increased delay, and high dynamic and static power consumption. These factors increase the cost of FPGA-based systems and lower their potential performance over ASIC-based systems. Recently, CMOS compatible devices have been developed that could mitigate these area/power/performance drawbacks.  Nano-Electro-Mechanical-Systems (NEMS) provide a promising, easily-integrable way to further FPGA-based systems. But first, a look at where all this overhead comes from in FPGAs.
 
 \textit{A. The Island-Style FPGA architecture}
 
@@ -163,13 +164,14 @@ In this work, the integration of nanoelectromechanical relays as reconfigurable 
 
 \textit{A. Relay Integration}
 
-In Connection Blocks and Switch Boxes, a combination of muxes and buffers are used to route Logic Blocks to wires and different routing wires together. Traditional CMOS muxes are implemented as two-stage serial pass transistor structures for minimal minimum area-delay product. For the relay based designs, these NMOS pass transistors (and corresponding configuration SRAM cells) are replaced with NEM relays. To reduce the number of series relays as well as the number of total relays, a one-stage NEM-based mux is preferable for reduced area and delay\cite{chen_efficient_2010}.
+In Connection Blocks and Switch Boxes, a combination of muxes and buffers are used to route Logic Blocks to wires and different routing wires together. Traditional CMOS muxes are implemented as two-stage serial pass transistor structures for minimum area-delay product. For the relay based designs, these NMOS pass transistors (and corresponding configuration SRAM cells) are replaced with NEM relays. To reduce the number of series relays as well as the number of total relays, a one-stage NEM-based mux is preferable for reduced area and delay\cite{chen_efficient_2010}.
 
-NEM relay based routing muxes can eliminate the need for configuration SRAM by implementing a CMOS half-select programing scheme\cite{chen_efficient_2010}. Similar to the half-select scheme of crossbar arrays, an array of row and column lines program the relays. The relay states are preserved by a constant holding voltage on the row lines and constant select voltage on the column lines. During configuration, an additional (positive or negative) select voltage is superimposed on on the row lines "to be programmed", and the column lines are grounded. This voltage is just enough to actuate the relay into the desired state, but not so much that catastrophic pull-in occurs. Since relays have no leakage current, the only power required to keep the relays in the "hold state" is the dynamic power used during configuration to charge the parasitic capacitance. Since state-of-the-art FPGAs consist of thousands of tiles, the half-select programming array is predicted to consume <5\% of total die area.
+NEM relay based routing muxes can eliminate the need for configuration SRAM by implementing a CMOS half-select programming scheme\cite{chen_efficient_2010}. Similar to the half-select scheme of crossbar arrays, an array of row and column lines program the relays. The relay states are preserved by a constant holding voltage on the row lines and constant select voltage on the column lines. During configuration, an additional (positive or negative) select voltage is superimposed on on the row lines "to be programmed", and the column lines are grounded. This voltage is just enough to actuate the relay into the desired state, but not so much that catastrophic pull-in occurs. Since relays have no leakage current, the only power required to keep the relays in the "hold state" is the dynamic power used during configuration to charge the parasitic capacitance. Since state-of-the-art FPGAs consist of thousands of tiles, the half-select programming array is predicted to consume <5\% of total die area.
 
 %------------------------------------------------
 
-\section{Methods}
+
+\section{Methods}\label{sec:methods}
 The aforementioned island-style architecture will be used to construct two functionally equivalent FPGAs using CMOS and NEMS routing schemes.
 
 % Describe specific FPGA architecture that we will use 
@@ -188,6 +190,7 @@ proportion of signals within the adjacent routing channels that the CB can
 connect an input or output signal to. The channel width will be set to 104 wires
 ($W=104$) with 80 of those wires representing the minimum channel width for 
 CLBs with 10 outputs and length 4 routing segments ($W_{min} = 2 * 10 * 4 = 80$).
+
 
 The Princeton Reconfigurable Field Programmable Array generator (pRGA) 
 was used to create the RTL description of this architecture.
@@ -261,6 +264,53 @@ lateral relays reported in literature and CMOS-only FPGAs. However, due to the r
 by the use of additional metal layers in the vertical relays, we predict that the integrated
 performance results may counterbalance the benefits from the reduced lateral area. In both NEMS design 
 cases, we expect the area and performance to improve compared to the CMOS-only designs.
+%------------------------------------------------
+
+%------------------------------------------------
+\section{Results}
+The final layouts for the CMOS and NEMS FPGAs are shown in Figures \ref{fig:cmos}
+and \ref{fig:nems} respectively. 
+
+\begin{figure}[!hbt]
+    \centering
+    \caption{Post-PAR layout of CMOS FPGA}
+    \label{fig:cmos}
+    \includegraphics[width=0.3\textwidth]{figs/cmos_innovus.png}
+\end{figure}
+
+\begin{figure}[!hbt]
+    \centering
+    \caption{Post-PAR layout of NEMS FPGA}
+    \label{fig:nems}
+    \includegraphics[width=0.3\textwidth]{figs/cmos_innovus.png}
+\end{figure}
+
+Fig. \ref{fig:area} shows the area for the different sub-blocks
+for both the CMOS and NEMS based FPGAs. The included sub-blocks are the CLB,
+\textit{blkinst}, and the four surrounding connection boxes: \textit{cbinstw}, 
+\textit{cbinste}, \textit{cbinsts}, and \textit{cbinstn}. The CLB area remains 
+nearly exactly the same; however, the size of all three CBs decreased by nearly 
+100x. As discussed in Section \ref{sec:methods}, only the memory and switches
+used for the connection boxes were replaced with NEMS relays and thus both 
+results are expected and explainable. Further area reduction can be achieved
+if the SRAM and muxes used inside the CLB block are also replaced with relays.
+The total area reduction is $\approx 44\%$. 
+
+\begin{figure}[!hbt]
+    \centering
+    \caption{Area comparison between NEMS and CMOS FPGA architectures}
+    \label{fig:area}
+    \includegraphics[width=0.5\textwidth]{figs/area_comparison.png}
+\end{figure}
+
+The static power reduction was around $48\%$ while the total power reduction
+was around $22\%$. Reliable estimates for the dynamic power dissipation were 
+not achieved for the NEMS relays and thus only the static power reduction numbers 
+should be considered. However, we still expect the leakage power reduction to dominate 
+the total power reduction, especially in this \SI{7}{\nano\meter} process. This is
+supported by the fact that the CMOS FPGA's leakage power accounts for nearly $77\%$ 
+of the total power while the NEMS FPGA's leakage accounts for nearly $71\%$.
+%------------------------------------------------
 
 %------------------------------------------------
 \section{Conclusion}

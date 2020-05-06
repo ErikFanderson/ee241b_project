@@ -1,0 +1,28 @@
+toolbox-cli -t tools.yml -c config/fpga.yml -c config/cds.yml -c config/jobs.yml --color -l info -b build -o toolbox reports	
+blkinst
+	Module: clb
+	Num Sub-Instances: 5285
+	Area: 10821.626 [um^2]
+cbinst_x0y0e
+	Module: cbox_clb_x0y0e
+	Num Sub-Instances: 228
+	Area: 241.212 [um^2]
+cbinst_x0y0n
+	Module: cbox_clb_x0y0n
+	Num Sub-Instances: 23
+	Area: 25.661 [um^2]
+cbinst_x0y0s
+	Module: cbox_clb_x0y0s
+	Num Sub-Instances: 46
+	Area: 48.989 [um^2]
+cbinst_x0y0w
+	Module: cbox_clb_x0y0w
+	Num Sub-Instances: 1744
+	Area: 1834.747 [um^2]
+fake_mem
+	Module: ff_array
+	Num Sub-Instances: 1334
+	Area: 3348.734 [um^2]
+############ Summary ############
+Total Area: 18736.583 [um^2]
+Total Hier Area: 16379.755 [um^2]
