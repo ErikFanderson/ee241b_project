@@ -154,17 +154,3 @@ clb_tile                                                                 9371   
   fake_mem/CLKGATE_RC_CG_HIER_INST37          CLKGATE_RC_CG_MOD_37          1                4.199
   fake_mem/CLKGATE_RC_CG_HIER_INST38          CLKGATE_RC_CG_MOD_38          1                4.199
   fake_mem/CLKGATE_RC_CG_HIER_INST39          CLKGATE_RC_CG_MOD_39          1                4.199
- CLKGATE_RC_CG_HIER_INST0                     CLKGATE_RC_CG_MOD             1                4.199
- CLKGATE_RC_CG_HIER_INST1                     CLKGATE_RC_CG_MOD_1           1                4.199
- CLKGATE_RC_CG_HIER_INST10                    CLKGATE_RC_CG_MOD_10          1                4.199
- CLKGATE_RC_CG_HIER_INST11                    CLKGATE_RC_CG_MOD_11          1                4.199
- CLKGATE_RC_CG_HIER_INST12                    CLKGATE_RC_CG_MOD_12          1                4.199
- CLKGATE_RC_CG_HIER_INST13                    CLKGATE_RC_CG_MOD_13          1                4.199
- CLKGATE_RC_CG_HIER_INST2                     CLKGATE_RC_CG_MOD_2           1                4.199
- CLKGATE_RC_CG_HIER_INST3                     CLKGATE_RC_CG_MOD_3           1                4.199
- CLKGATE_RC_CG_HIER_INST4                     CLKGATE_RC_CG_MOD_4           1                4.199
- CLKGATE_RC_CG_HIER_INST5                     CLKGATE_RC_CG_MOD_5           1                4.199
- CLKGATE_RC_CG_HIER_INST6                     CLKGATE_RC_CG_MOD_6           1                4.199
- CLKGATE_RC_CG_HIER_INST7                     CLKGATE_RC_CG_MOD_7           1                4.199
- CLKGATE_RC_CG_HIER_INST8                     CLKGATE_RC_CG_MOD_8           1                4.199
- CLKGATE_RC_CG_HIER_INST9                     CLKGATE_RC_CG_MOD_9           1                4.199
