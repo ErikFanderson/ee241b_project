@@ -9,7 +9,7 @@ print("\n")
 
 s = "{"
 for i in range(25, (25+N)):
-    s += "30{cfgcols[" + str(i) + "]},"
-s += (str(N+1) + "{cfgcols[" + str(maxlen - N*30) + "]}")
+    s += "{30{cfgcols[" + str(i) + "]}},"
+s += ("{" + str(maxlen - N*30) + "{cfgcols[" + str(i+1) + "]}}")
 s += "}"
 print(s)

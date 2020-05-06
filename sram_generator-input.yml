@@ -1,0 +1,2 @@
+vlsi.inputs.sram_parameters: '/scratch/cs199-ccz/ee241bS20/lars_erik/sram-cache.json'
+vlsi.inputs.sram_parameters_meta: ["transclude", "json2list"]

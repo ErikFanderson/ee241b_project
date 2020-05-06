@@ -1,0 +1,29 @@
+sim.inputs.top_module: "gcdGCDUnit_rtl"
+sim.inputs.tb_dut: "gcd"
+sim.inputs.tb_name: "gcdTestHarness_rtl"
+
+sim.inputs.input_files_meta: "append"
+sim.inputs.input_files:
+  - "/home/ff/ee241/spring20-labs/ee241bS20/src/gcdGCDUnitCtrl.v"
+  - "/home/ff/ee241/spring20-labs/ee241bS20/src/gcdGCDUnitDpath.v"
+  - "/home/ff/ee241/spring20-labs/ee241bS20/src/gcdGCDUnit_rtl.v"
+  - "/home/ff/ee241/spring20-labs/ee241bS20/src/gcdTestHarness_rtl.v"
+  - "/home/ff/ee241/install/vclib/vcQueues.v"
+  - "/home/ff/ee241/install/vclib/vcStateElements.v"
+  - "/home/ff/ee241/install/vclib/vcTest.v"
+  - "/home/ff/ee241/install/vclib/vcTestSource.v"
+  - "/home/ff/ee241/install/vclib/vcTestSink.v"
+
+sim.inputs:
+  timescale: "1ns/10ps"
+  options: 
+    - "-notice"
+    - "-line"
+    - "-debug_pp"
+    - "+v2k"
+    - "+lint=all,noVCDE"
+    - "+incdir+/home/ff/ee241/install/vclib"
+    - "+define+CLOCK_PERIOD=0.5"
+
+  execute_sim: true
+  execution_flags: ["+verbose=1"]

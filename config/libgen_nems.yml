@@ -1,20 +1,20 @@
 liberate.bin: "/tools/cadence/LIBERATE/LIBERATE181/bin/liberate"
 liberate.execute: true 
 
-liberate.lib_name: "nem_sw_0p7v_25c_typical" 
-liberate.time_unit: "1ps"
-liberate.cap_unit: "1ff"
+liberate.lib_name: "nems_relay_0p7v_25c_typical" 
+liberate.time_unit: "1ns"
+liberate.cap_unit: "1pf" 
 
-liberate.spice_files: ["lars_erik/nem_sw.spi"]
+liberate.spice_files: ["lars_erik/nems_model.spi"]
 liberate.voltage: 0.7
 liberate.temperature: 25
-liberate.input_slew: [5, 10, 20, 40, 80, 160, 320]
-liberate.output_load: [0.72, 1.44, 2.88, 5.76, 11.52, 23.04, 46.08]
+liberate.input_slew: [0.1, 0.2]
+liberate.output_load: [0.3, 0.4]
 
-liberate.cell: "nem_sw"
-liberate.cell_pins.input: ["D", "G", "B"]
-liberate.cell_pins.output: ["S"]
+liberate.cell: "nems_relay"
+liberate.cell_pins.input: ["drain", "gate"]
+liberate.cell_pins.output: ["source"]
 
 liberate.arcs:
-  - {pin: "S", pin_dir: "R", related_pin: "D", related_pin_dir: "R"}
-  - {pin: "S", pin_dir: "F", related_pin: "D", related_pin_dir: "F"}
+  - {pin: "source", pin_dir: "R", related_pin: "drain", related_pin_dir: "R"}
+  - {pin: "source", pin_dir: "F", related_pin: "drain", related_pin_dir: "F"}

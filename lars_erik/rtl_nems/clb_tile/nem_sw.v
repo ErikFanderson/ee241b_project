@@ -1,5 +1,5 @@
 //nems_sw.v
-//TBD lef
+//DEPRECATED: REPLACED BY LEF
 
 module nem_sw (
     inout wire [0:0] D,

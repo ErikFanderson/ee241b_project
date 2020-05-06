@@ -1,0 +1,2 @@
+vlsi.inputs.nems_parameters: '/scratch/lpt/ee2401bS20/lars_erik/nems.json'
+vlsi.inputs.nems_parameters_meta: ["transclude", "json2list"]

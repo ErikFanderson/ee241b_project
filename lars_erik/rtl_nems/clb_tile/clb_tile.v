@@ -222,8 +222,8 @@ module clb_tile (
         .blkp_clb_x0y0_ib8(cbinst_x0y0w__blkp_clb_x0y0_ib8),
         .blkp_clb_x0y0_ia9(cbinst_x0y0w__blkp_clb_x0y0_ia9),
         .blkp_clb_x0y0_ib9(cbinst_x0y0w__blkp_clb_x0y0_ib9),
-        .rows({23{cfgrows[29:0]},cfgrows[10:0]}),
-        .cols({30{cfgcols[1]},30{cfgcols[2]},30{cfgcols[3]},30{cfgcols[4]},30{cfgcols[5]},30{cfgcols[6]},30{cfgcols[7]},30{cfgcols[8]},30{cfgcols[9]},30{cfgcols[10]},30{cfgcols[11]},30{cfgcols[12]},30{cfgcols[13]},30{cfgcols[14]},30{cfgcols[15]},30{cfgcols[16]},30{cfgcols[17]},30{cfgcols[18]},30{cfgcols[19]},30{cfgcols[20]},30{cfgcols[21]},30{cfgcols[22]},30{cfgcols[23]},10{cfgcols[24]}})
+        .rows({{23{cfgrows[29:0]}},cfgrows[9:0]}),
+        .cols({{30{cfgcols[1]}},{30{cfgcols[2]}},{30{cfgcols[3]}},{30{cfgcols[4]}},{30{cfgcols[5]}},{30{cfgcols[6]}},{30{cfgcols[7]}},{30{cfgcols[8]}},{30{cfgcols[9]}},{30{cfgcols[10]}},{30{cfgcols[11]}},{30{cfgcols[12]}},{30{cfgcols[13]}},{30{cfgcols[14]}},{30{cfgcols[15]}},{30{cfgcols[16]}},{30{cfgcols[17]}},{30{cfgcols[18]}},{30{cfgcols[19]}},{30{cfgcols[20]}},{30{cfgcols[21]}},{30{cfgcols[22]}},{30{cfgcols[23]}},{10{cfgcols[24]}}})
 
         );
     cbox_clb_x0y0e cbinst_x0y0e (
@@ -259,126 +259,17 @@ module clb_tile (
         .blkp_clb_x0y0_oa9(blkinst__oa9),
         .blkp_clb_x0y0_ob9(blkinst__ob9),
         .blkp_clb_x0y0_q9(blkinst__q9),
-        .rows({3{cfgrows[29:0]},cfgrows[28:0]}),
-        .cols({30{cfgcols[25]},30{cfgcols[26]},30{cfgcols[27]},4{cfgcols[28]}})
+        .rows({{3{cfgrows[29:0]}},cfgrows[27:0]}),
+        .cols({{30{cfgcols[25]}},{30{cfgcols[26]}},{30{cfgcols[27]}},{28{cfgcols[28]}}})
 
         );
     
 `ifdef LARS_ERIK    
     //Instantiate SRAM control shift registers
-    reg [38:0] sram_input_cfg;
-    wire [31:0] sram_rd_data;
+	//bye MOTHERFUCKERS
 
-    always @(posedge cfg_clk) begin
-        if (cfg_scan_en) begin
-            sram_input_cfg <= {sram_input_cfg[37:0], blkinst__cfg_o};
-        end
-    end
-    
-    assign cfg_scan_out = sram_input_cfg[38];
-    
-    // Fake Memory - i.e. flop array
-    reg [31:0] flop_array [15:0];
-    reg [31:0] output_flop_array;
-
-    // Write
-    always @(posedge cfg_clk) begin
-        if (~sram_input_cfg[4] && ~sram_input_cfg[6]) begin
-            flop_array[sram_input_cfg[3:0]] <= sram_input_cfg[38:7];
-        end
-    end
-    
-    // Read 
-    always @(posedge cfg_clk) begin
-        if (~sram_input_cfg[4] && sram_input_cfg[6]) begin
-            output_flop_array <= flop_array[sram_input_cfg[3:0]];
-        end
-    end
-
-    assign sram_rd_data = output_flop_array;
-
-    //// Instantiate SRAM (2RW - 16x32) - Just don't use 1 port...
-    //SRAM2RW16x32 sram_input_cfg (
-    //    .CE1(cfg_clk),      // clk 
-    //    .A1(sram_input_cfg[3:0]), // address 
-    //    .WEB1(sram_input_cfg[4]), // write enable bar 
-    //    .OEB1(sram_input_cfg[5]), // output enable bar 
-    //    .CSB1(sram_input_cfg[6]), // chip select bar 
-    //    .I1(sram_input_cfg[38:7]),// input 
-    //    .O1(sram_rd_data),  // output 
-    //    
-    //    // Leave second port disconnected (Needed 16x32 1RW but only had 2RW)
-    //    .A2(),
-    //    .CE2(),
-    //    .WEB2(),
-    //    .OEB2(),
-    //    .CSB2(),
-    //    .I2(),
-    //    .O2()
-    //);
-    
-    // Instantiate registers for statically configuring muxes and luts
-    reg [31:0] sram_output_cfg [15:0];
-
-    always @(posedge cfg_clk) begin
-        if (~sram_input_cfg[4]) begin
-            sram_output_cfg[sram_input_cfg[3:0]] <= sram_rd_data;
-        end
-    end
-    
-    // Wiring from registers to __cfg_d
-    assign cfg_chain_cbinst_x0y0s__cfg_d = sram_output_cfg[0][7:0]; // 8 bits
-    
-    assign cfg_chain_cbinst_x0y0n__cfg_d = sram_output_cfg[0][11:8]; // 4 bits
-    
-    assign cfg_chain_cbinst_x0y0w__cfg_d[31:0] = sram_output_cfg[1]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[63:32] = sram_output_cfg[2]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[95:64] = sram_output_cfg[3]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[127:96] = sram_output_cfg[4]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[159:128] = sram_output_cfg[5]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[191:160] = sram_output_cfg[6]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[223:192] = sram_output_cfg[7]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[255:224] = sram_output_cfg[8]; // 280 bits
-    assign cfg_chain_cbinst_x0y0w__cfg_d[279:256] = sram_output_cfg[9][23:0]; // 280 bits
-    
-    assign cfg_chain_cbinst_x0y0e__cfg_d[31:0] = sram_output_cfg[10]; // 76 bits
-    assign cfg_chain_cbinst_x0y0e__cfg_d[63:32] = sram_output_cfg[11]; // 76 bits
-    assign cfg_chain_cbinst_x0y0e__cfg_d[75:64] = sram_output_cfg[12][11:0]; // 76 bits
 `else
-    cfg_bitchain8 cfg_chain_cbinst_x0y0s (
-        .cfg_clk(cfg_clk),
-        .cfg_e(cfg_e),
-        .cfg_we(cfg_we),
-        .cfg_i(blkinst__cfg_o),
-        .cfg_o(cfg_chain_cbinst_x0y0s__cfg_o),
-        .cfg_d(cfg_chain_cbinst_x0y0s__cfg_d)
-        );
-    cfg_bitchain4 cfg_chain_cbinst_x0y0n (
-        .cfg_clk(cfg_clk),
-        .cfg_e(cfg_e),
-        .cfg_we(cfg_we),
-        .cfg_i(cfg_chain_cbinst_x0y0s__cfg_o),
-        .cfg_o(cfg_chain_cbinst_x0y0n__cfg_o),
-        .cfg_d(cfg_chain_cbinst_x0y0n__cfg_d)
-        );
-    cfg_bitchain280 cfg_chain_cbinst_x0y0w (
-        .cfg_clk(cfg_clk),
-        .cfg_e(cfg_e),
-        .cfg_we(cfg_we),
-        .cfg_i(cfg_chain_cbinst_x0y0n__cfg_o),
-        .cfg_o(cfg_chain_cbinst_x0y0w__cfg_o),
-        .cfg_d(cfg_chain_cbinst_x0y0w__cfg_d)
-        );
-    cfg_bitchain76 cfg_chain_cbinst_x0y0e (
-        .cfg_clk(cfg_clk),
-        .cfg_e(cfg_e),
-        .cfg_we(cfg_we),
-        .cfg_i(cfg_chain_cbinst_x0y0w__cfg_o),
-        .cfg_o(cfg_chain_cbinst_x0y0e__cfg_o),
-        .cfg_d(cfg_chain_cbinst_x0y0e__cfg_d)
-        );
-    
-    assign cfg_o = cfg_chain_cbinst_x0y0e__cfg_o;
+	//BYE MOTHERFUCKERS t 2
 `endif    
     
     assign arc_L1_x0y0n = cbinst_x0y0e__cbo_L1_x0y0n;

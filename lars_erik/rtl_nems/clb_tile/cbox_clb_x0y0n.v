@@ -3,9 +3,8 @@ module cbox_clb_x0y0n (
     output wire [0:0] blkp_clb_x0y0_cin,
     input wire [19:0] cbi_L1_x0y0e,
     input wire [19:0] cbi_L1_x0y0w,
-    input wire [3:0] cfg_d,
     input wire [9:0] rows,
-    input wire [9:0] cols,
+    input wire [9:0] cols
     );
     
     wire [0:0] sw_blkp_clb_x0y0_cin_0__o;
