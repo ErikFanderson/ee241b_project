@@ -56,7 +56,7 @@
 \pagestyle{fancy} % All pages have headers and footers
 \fancyhead{} % Blank out the default header
 \fancyfoot{} % Blank out the default footer
-\fancyhead[C]{UC Berkeley Advanced Digital Integrated Circuits Letters $\bullet$ \today} % Custom header text
+\fancyhead[C]{UC Berkeley Transactions on Advanced Digital Integrated Circuits $\bullet$ \today} % Custom header text
 \fancyfoot[RO,LE]{\thepage} % Custom footer text
 
 \usepackage{titling} % Customizing the title section
@@ -115,6 +115,7 @@ in the modern semiconductor landscape.
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}
+
 Field Programmable Gate Arrays (FPGAs) have long been used to enable rapid prototyping of digital systems pre-tapeout of Application Specific Integrated Circuits (ASICs)\cite{8187326}. The framework they provide for high-performance reconfigurable digital systems is now proving useful for end-use applications including ML-acceleration, cryptocurrency mining, high-frequency stock trading, and software-defined radios. FPGA demand is predicted to continue rising as these prototyping and end-use markets increase in demand.
 
 To enable this flexibility, FPGA-based systems are much more demanding than their ASIC counterparts. FPGAs come with larger die area requirements, increased delay, and high dynamic and static power consumption. These factors increase the cost of FPGA-based systems and lower their potential performance over ASIC-based systems. Recently, CMOS compatible devices have been developed that could mitigate these area/power/performance drawbacks.  Nano-Electro-Mechanical-Systems (NEMS) provide a promising, easily-integrable way to further FPGA-based systems. But first, a look at where all this overhead comes from in FPGAs.
@@ -139,9 +140,9 @@ the constraints of ASAP7, the SRAM was implemented as an array of flip flops.
 
 \begin{figure}[!hbt]
     \centering
-    \caption{Results of python script}
-    \label{fig:results}
     \includegraphics[width=0.5\textwidth]{figs/island_style.png}
+    \caption{Results of python script}
+    \label{fig:results}    
 \end{figure}
 
 These Reconfigurable Interconnects dominate the area/power overhead incurred by FPGAs \cite{ALTERA}. In an ASIC, interconnects are simple, passive elements; circuits are connected using fixed metal lines paths above the transistor devices. To enable design flexibility, FPGAs add SRAM configuration storage as well as the mux circuitry required to connect blocks and wires. Not only does this additional circuitry incur a large power/delay overhead, it also must be implemented completely in the Front-End-Of-Line alongside logic transistors, adding significantly to die area.
@@ -150,14 +151,12 @@ What if these power/performance/area drawbacks could be mitigated to enhance FPG
 
 \textit{B. NEM Relays}
 
-Nanoelectromechanical Relays are electrically actuated mechanical switches. Notably, they experience zero leakage, have the potential for lower on-state resistance than NMOS pass gate, and can be implemented in the BEOL in a CMOS-compatible process flow\cite{LIU}. The major disadvantages of NEM relays are large mechanical switching delay (> 1ns)\cite{chen_integrated_2008} and lower reliability with respect to transistors ($10^9$ - $10^{10}$ cycles). The two relay device architectures examined in this work are lateral "crab style" relays and vertical interconnect relays. Due to their hysteretic properties, they can be implemented to replace both the interconnect pass-gates and their corresponding SRAM cells.
+Nanoelectromechanical Relays are electrically actuated mechanical switches. Notably, they experience zero leakage, have the potential for lower on-state resistance than NMOS pass gate, and can be implemented in the BEOL in a CMOS-compatible process flow\cite{LIU}. The major disadvantages of NEM relays are large mechanical switching delay (> 1ns)\cite{chen_integrated_2008} and lower reliability with respect to transistors ($10^9$ - $10^{10}$ cycles). Two prominent relay device architectures are lateral "crab style" relays and vertical interconnect relays. Due to their hysteretic properties, they can be implemented to replace both the interconnect pass-gates and their corresponding SRAM cells.
 
 The lateral "crab-style" relays are the result of many years of development at Stanford and UC Berkeley to create an efficient CMOS compatible NEM relay\cite{LIU}. These relays are switched on/off using the gate to body voltage difference. When "off", no current flows across the air gap. When "on", current flows between the drain and source with low on-state resistance. With this design, the device can be body-biased to have an extremely small switching voltage, experimentally shown to be sub-50mV range.
 
-The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches \cite{OLDSIKDER} (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones can be designed within the constraints of standard CMOS BEOL design rules as an ASIMPS process; i.e, they use standard metal line/via structures, and dimensions are standard for the process node.
-
+The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches \cite{OLDSIKDER} (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones can be designed within the constraints of standard CMOS BEOL design rules as an ASIMPS process; i.e, they use standard metal line/via structures, and dimensions are standard for the process node. Due to this, we explore the vertical relay implementation in depth.
 %------------------------------------------------
-
 \section{Proposed Techniques}\label{sec:proposed}
 
 In this work, the integration of nanoelectromechanical relays as reconfigurable interconnects is proposed as a way to mitigate the overhead incurred by FPGA-based systems. 
@@ -207,7 +206,7 @@ The CMOS FPGA will serve as a baseline for the NEMS design.
 Because the programmable interconnect (PI) will be replaced with NEM relays, the make up
 of our baseline's PI will significantly impact the perceived benefits. 
 CMOS transmission gates show promise for scaled nodes, and were used to build the MUXes used 
-for the PI and the LUTs. Note that semi-recent Commercial FPGAs continue to use pass-transistors with gate-boosting and internal buffering
+for the PI and the LUTs. Note that semi-recent commercial FPGAs continue to use pass-transistors with gate-boosting and internal buffering
 to achieve a slightly lower area-delay product. \cite{chiasson_should_2013}.
 
 % Detail how we will model the NEMs relays
@@ -235,18 +234,17 @@ ignored for our purposes.
 % \end{figure}
 
 % Detail how we will P&R the NEMs relays
-For design Place and Route, the structure from \cite{OLDSIKDER} was implemented "as-is" with the simualted relay design parameters and resultant optimal dimensions. The contact gap is 20nm, and the actuation gap is 60nm. The metal beam is 75nm x 18nm. These result in a total switch area footprint of 75nm x 96nm, or 0.0072 square microns.
+For design Place And Route, the structure from \cite{OLDSIKDER} was implemented "as-is" with the simulated relay design parameters and resultant optimal dimensions. The contact gap is 20nm, and the actuation gap is 60nm. The metal beam is 75nm x 18nm. These result in a total switch area footprint of 75nm x 96nm, or 0.0072 square microns.
 Note for sake of consistency with the referenced work, this design does not conform to ASAP7 design rules. For example, the upper metal layers are thinner than the minimum metal length, and the metal gaps have not been vetted.
-It shoud also be noted that any fabrication-assistive structures required to create the NEM relay structure have been omitted. Many times, metal "passivation layers" and upper metal layer keepout boundaries must be implemented to prevent unintentional destruction of other standard CMOS structures during the anisotropic release etch.
+It shoud also be noted that any fabrication-assistive structures required to create the NEM relay structure have been omitted. Many times, metal "masking layers" and upper metal layer keepout boundaries must be implemented to prevent unintentional destruction of other standard CMOS structures during the anisotropic release etch.
 
 %UPDATE WITH REAL FIGURE INFO
 \begin{figure}[!hbt]
     \centering
+    \includegraphics[width=0.5\textwidth]{figs/NEMlayout.png}
     \caption{Implemented NEM relay structure from M1 to M5}
     \label{fig:methods}
-    \includegraphics[width=0.5\textwidth]{figs/NEMlayout.png}
 \end{figure}
-
 
 % Detail final analysis that will be done
 Area analysis is done using the Innovus post-PAR FPGA tile consisting of 4 connection blocks and a configurable logic block.
@@ -258,31 +256,31 @@ Power/timing analysis was also done in Innovus. For the NEM relays, a .lib file 
 %------------------------------------------------
 
 %------------------------------------------------
-\section{Hypothesis}
-The vertical 4T relays should show a significant area reduction compared to the
-lateral relays reported in literature and CMOS-only FPGAs. However, due to the reduced routing resources caused
-by the use of additional metal layers in the vertical relays, we predict that the integrated
-performance results may counterbalance the benefits from the reduced lateral area. In both NEMS design 
-cases, we expect the area and performance to improve compared to the CMOS-only designs.
+% \section{Hypothesis}
+% The vertical 4T relays should show a significant area reduction compared to the
+% lateral relays reported in literature and CMOS-only FPGAs. However, due to the reduced routing resources caused
+% by the use of additional metal layers in the vertical relays, we predict that the integrated
+% performance results may counterbalance the benefits from the reduced lateral area. In both NEMS design 
+% cases, we expect the area and performance to improve compared to the CMOS-only designs.
 %------------------------------------------------
 
 %------------------------------------------------
 \section{Results}
 The final layouts for the CMOS and NEMS FPGAs are shown in Figures \ref{fig:cmos}
-and \ref{fig:nems} respectively. 
+and \ref{fig:NEMS} respectively. 
 
 \begin{figure}[!hbt]
     \centering
+    \includegraphics[width=0.3\textwidth]{figs/cmos_innovus.png}
     \caption{Post-PAR layout of CMOS FPGA}
     \label{fig:cmos}
-    \includegraphics[width=0.3\textwidth]{figs/cmos_innovus.png}
 \end{figure}
 
 \begin{figure}[!hbt]
+    \includegraphics[width=0.3\textwidth]{figs/nems_innovus.png}
     \centering
     \caption{Post-PAR layout of NEMS FPGA}
-    \label{fig:nems}
-    \includegraphics[width=0.3\textwidth]{figs/cmos_innovus.png}
+    \label{fig:NEMS}    
 \end{figure}
 
 Fig. \ref{fig:area} shows the area for the different sub-blocks
@@ -297,10 +295,10 @@ if the SRAM and muxes used inside the CLB block are also replaced with relays.
 The total area reduction is $\approx 44\%$. 
 
 \begin{figure}[!hbt]
+    \includegraphics[width=0.5\textwidth]{figs/area_comparison.png}
     \centering
     \caption{Area comparison between NEMS and CMOS FPGA architectures}
     \label{fig:area}
-    \includegraphics[width=0.5\textwidth]{figs/area_comparison.png}
 \end{figure}
 
 The static power reduction was around $48\%$ while the total power reduction
