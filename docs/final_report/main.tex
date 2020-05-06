@@ -163,6 +163,7 @@ The vertical relays are designed to be more compact and compatible with existing
 The aforementioned island-style architecture will be used to construct two functionally equivalent FPGAs using CMOS and NEMS routing schemes.
 
 % Describe specific FPGA architecture that we will use 
+\subsection{FPGA Architecture and Integration}
 To ensure that our results are consistent with previous works, we
 will create a very similar tile to the one described in \cite{chen_efficient_2010}. 
 This tile consists of 10 4-LUT BLEs w/ 22 input pins and 10 output pins.
@@ -215,15 +216,16 @@ time, and thus as long as the relays are not prohibitively slow, which they
 have been shown not to be \cite{chen_integrated_2008}, then the dynamics of the switches can be 
 ignored for our purposes.
 
-% %UPDATE WITH REAL FIGURE INFO
-% \begin{figure}[!hbt]
-%     \centering
-%     \caption{RC Circuit Model of "ON" relay}
-%     \label{fig:methods}
-%     \includegraphics[width=0.5\textwidth]{figs/island_style.png}
-% \end{figure}
+%UPDATE WITH REAL FIGURE INFO
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figs/spice.png}
+    \caption{Static spice model of relay}
+    \label{fig:methods}
+\end{figure}
 
 % Detail how we will P&R the NEMs relays
+
 For design Place And Route, the structure from \cite{OLDSIKDER} was implemented "as-is" with the simulated relay design parameters and resultant optimal dimensions. The contact gap is 20nm, and the actuation gap is 60nm. The metal beam is 75nm x 18nm. These result in a total switch area footprint of 75nm x 96nm, or 0.0072 square microns.
 Note for sake of consistency with the referenced work, this design does not conform to ASAP7 design rules. For example, the upper metal layers are thinner than the minimum metal length, and the metal gaps have not been vetted.
 It shoud also be noted that any fabrication-assistive structures required to create the NEM relay structure have been omitted. Many times, metal "masking layers" and upper metal layer keepout boundaries must be implemented to prevent unintentional destruction of other standard CMOS structures during the anisotropic release etch.
@@ -304,9 +306,9 @@ of the total power while the NEMS FPGA's leakage accounts for nearly $71\%$.
 \section{Conclusion}
 We have examined the integration of vertical BEOL NEMs relays in an FPGA architecture. 
 As expected, both static power and area are reduced substantially. However, 
-multiple shortcomings must be addressed to continue this work. At the finest level,
-the NEMS relays implemented must be fully compatible with the design rules of the chosen process 
-to allow for a compltely fair integration. Accurate spice models of the relays are also needed 
+multiple shortcomings must be addressed to continue this work. Firstly, the NEMS relays implemented 
+must be fully compatible with the design rules of the chosen process to allow for a 
+compltely fair integration. Accurate spice models of the relays are also needed 
 to get accurate power/timing information. At the circuit architecture level,
 real SRAMs should be used for the baseline FPGA for the most accurate comparison. 
 Generating larger multi-tile designs could also reveal any potential global 
