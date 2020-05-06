@@ -206,10 +206,11 @@ In Connection Blocks and Switch Boxes, a combination of muxes and buffers are us
 
 NEM relay based routing muxes can eliminate the need for configuration SRAM by implementing a CMOS half-select programming scheme\cite{chen_efficient_2010}. Similar to the half-select scheme of crossbar arrays, the relays are partitioned into an array of row and column lines for programming. The relay states are preserved by a constant holding voltage on the row lines and constant select voltage on the column lines. During configuration, an additional (positive or negative) select voltage is superimposed on on the row lines "to be programmed", and the column lines are grounded. This voltage is just enough to actuate the relay into the desired state, but not so much that catastrophic pull-in occurs. Since relays have no leakage current, the only power required to keep the relays in the "hold state" is the dynamic power used during configuration to charge the parasitic capacitance. Since state-of-the-art FPGAs consist of thousands of tiles, the half-select programming array is predicted to consume <5\% of total die area.
 
-The NEMs relays can be modeled as simple RC circuits when configured in the 
-ON-state \cite{chen_efficient_2010} \cite{chen_integrated_2008} and can be ignored, 
-because they are physically disconnected from the 
-circuit, when in the OFF-state. Modeling the dynamics of the NEMs relays
+The NEMs relays can be modeled as simple RC circuits as shown in Figure \ref{fig:spice}. 
+When configured in the ON-state \cite{chen_efficient_2010} \cite{chen_integrated_2008}, They have
+a finite resistace ~2Rcont, plus parasitic capacitances. In the OFF state, 
+the resistance is infinite because the terminals are physically disconnected from the 
+channel. Modeling the dynamics of the NEM relays
 as they switch on and off is not as important as the steady-state behavior
 for this analysis. Switching time will only affect the FPGA configuration
 time, and thus as long as the relays are not prohibitively slow, which they
@@ -221,12 +222,12 @@ ignored for our purposes.
     \centering
     \includegraphics[width=0.5\textwidth]{figs/spice.png}
     \caption{Static spice model of relay}
-    \label{fig:methods}
+    \label{fig:spice}
 \end{figure}
 
 % Detail how we will P&R the NEMs relays
 
-For design Place And Route, the structure from \cite{OLDSIKDER} was implemented "as-is" with the simulated relay design parameters and resultant optimal dimensions. The contact gap is 20nm, and the actuation gap is 60nm. The metal beam is 75nm x 18nm. These result in a total switch area footprint of 75nm x 96nm, or 0.0072 square microns.
+For design Place And Route, the structure from \cite{OLDSIKDER} was implemented "as-is" with the simulated relay design parameters and resultant optimal dimensions. The contact gap is 20nm, and the actuation gap is 60nm. The metal beam is 75nm x 18nm. These result in a total switch area footprint of 75nm x 96nm, or 0.0072 square microns (Figure \ref{fig:nemlayout}).
 Note for sake of consistency with the referenced work, this design does not conform to ASAP7 design rules. For example, the upper metal layers are thinner than the minimum metal length, and the metal gaps have not been vetted.
 It shoud also be noted that any fabrication-assistive structures required to create the NEM relay structure have been omitted. Many times, metal "masking layers" and upper metal layer keepout boundaries must be implemented to prevent unintentional destruction of other standard CMOS structures during the anisotropic release etch.
 
@@ -235,7 +236,7 @@ It shoud also be noted that any fabrication-assistive structures required to cre
     \centering
     \includegraphics[width=0.5\textwidth]{figs/NEMlayout.png}
     \caption{Implemented NEM relay structure from M1 to M5}
-    \label{fig:methods}
+    \label{fig:nemlayout}
 \end{figure}
 
 % Detail final analysis that will be done
