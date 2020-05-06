@@ -21,6 +21,8 @@
 
 \documentclass[twoside,twocolumn]{article}
 
+\usepackage{graphicx}
+
 \usepackage{blindtext} % Package to generate dummy text throughout this template 
 
 \usepackage[sc]{mathpazo} % Use the Palatino font
@@ -214,6 +216,13 @@ This will require connecting an array of FPGA tiles and running
 placement, packing, and routing to extract realistic performance and
 utilization numbers. A popular open source tool known as the Verilog-to-Routing 
 (VTR) project \cite{vtr8} will be used to perform this analysis.  
+
+\begin{figure}[!hbt]
+    \centering
+    \caption{Results of python script}
+    \label{fig:results}
+    \includegraphics[width=0.5\textwidth]{figs/island_style.png}
+\end{figure}
 
 %------------------------------------------------
 
