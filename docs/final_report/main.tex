@@ -133,7 +133,7 @@ Nanoelectromechanical Relays are electrically actuated mechanical switches. Nota
 
 The lateral "crab-style" relays are the result of many years of development at Stanford and UC Berkeley to create an efficient CMOS compatible NEM relay\cite{LIU}. These relays are switched on/off using the gate to body voltage difference. When "off", no current flows across the air gap. When "on", current flows between the drain and source with low on-state resistance. With this design, the device can be body-biased to have an extremely small switching voltage, experimentally shown to be sub-50mV range.
 
-The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones are designed within the constraints of standard CMOS BEOL design rules; i.e, they use standard metal line/via structures, and dimensions are standard for the process node.
+The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones can be designed within the constraints of standard CMOS BEOL design rules as an ASIMPS process; i.e, they use standard metal line/via structures, and dimensions are standard for the process node.
 
 %------------------------------------------------
 
@@ -166,7 +166,9 @@ the CLBs to their adjacent routing channels, while the SBs provide the connectio
 between intersecting routing channels. It is common to fold the output portion of 
 the CBs into the SB \cite{chen_efficient_2010}. Thus, the same MUXes used for
 connecting routing channels can be enlarged to accomodate the additional 
-CLB output connections.
+CLB output connections. The tile's routing configuration is stored in a configuration SRAM array
+and shifted out to configuration registers at the beginning of normal operation. Working within
+the constraints of ASAP7, the SRAM was implemented as an array of flip flops.
 
 % Describe specific FPGA architecture that we will use 
 To ensure that our results are consistent with previous works, we
