@@ -302,14 +302,17 @@ of the total power while the NEMS FPGA's leakage accounts for nearly $71\%$.
 
 %------------------------------------------------
 \section{Conclusion}
-We have reviewed several methods for creating BEOL NEMs relays in CMOS processes. 
-Our proposed work will include the creation of 3 island-style FPGA tiles including NEMS 
-supporting circuitry for direct comparison of area and performance between a traditional 
-CMOS-only FPGA and two different styles of NEMS based FPGAs.
-
- Further analysis can be performed 
-on the full FPGAs to determine the dissipated power and maximum 
-operating frequency for each design for a given set of test circuits.
+We have examined the integration of vertical BEOL NEMs relays in an FPGA architecture. 
+As expected, both static power and area are reduced substantially. However, 
+multiple shortcomings must be addressed to continue this work. At the finest level,
+the NEMS relays implemented must be fully compatible with the design rules of the chosen process 
+to allow for a compltely fair integration. Accurate spice models of the relays are also needed 
+to get accurate power/timing information. At the circuit architecture level,
+real SRAMs should be used for the baseline FPGA for the most accurate comparison. 
+Generating larger multi-tile designs could also reveal any potential global 
+routing issues caused by the NEM interconnect relays.
+Further analysis can be performed on fully-generated FPGAs to determine the dissipated power and maximum 
+operating frequency for each design for a given set of test circuits. 
 This will require connecting an array of FPGA tiles and running 
 placement, packing, and routing to extract realistic performance and
 utilization numbers. A popular open source tool known as the Verilog-to-Routing 
