@@ -120,16 +120,16 @@ Field Programmable Gate Arrays (FPGAs) have long been used to enable rapid proto
 
 To enable this flexibility, FPGA-based systems are much more demanding than their ASIC counterparts. FPGAs come with larger die area requirements, increased delay, and high dynamic and static power consumption. These factors increase the cost of FPGA-based systems and lower their potential performance over ASIC-based systems. Recently, CMOS compatible devices have been developed that could mitigate these area/power/performance drawbacks.  Nano-Electro-Mechanical-Systems (NEMS) provide a promising, easily-integrable way to further FPGA-based systems. But first, a look at where all this overhead comes from in FPGAs.
 
-\textit{A. The Island-Style FPGA architecture}
+\subsection{The Island-Style FPGA architecture}
 
 FPGAs general consist of a general logic fabric as well as application-specific components, such as block RAM, DSPs, clocking, and I/O blocks\cite{8187326}. This project will tackle the general logic fabric, since it makes up the majority of the FPGA.
 
 SRAM-based island-style FPGAs represent the vast majority of commercial and academic
-FPGA implementations \cite{farooq_fpga_2012}. To create an island-style FPGA a basic \textit{tile} must first be constructed. 
-Each tile consists of one \textit{configurable logic block} (CLB), 
-two \textit{connection boxes} (CBs), and one \textit{switch box} (SB). 
-The CLB contains N basic logic elements (BLEs) which each contain a K-input 
-look-up-table (LUT) and a flip-flop. CLBs are used to implement arbitrary combinational and sequential logic circuits. 
+FPGA implementations \cite{farooq_fpga_2012}. Fig. \ref{fig:island} shows an example of a simplified island-style FPGA. 
+To create an island-style FPGA a basic \textit{tile} must first be constructed. Each tile consists of one 
+\textit{configurable logic block} (CLB), two \textit{connection boxes} (CBs), and one \textit{switch box} (SB). 
+The CLB contains N basic logic elements (BLEs) which each contain a K-input look-up-table (LUT) and a flip-flop. 
+CLBs are used to implement arbitrary combinational and sequential logic circuits. 
 Each CLB can be programmed to perform an arithmetic or state-based portion of a larger logic system. CLBs are connected together using reconfigurable interconnects. In addition, CLBs provide an intra-cluster routing network to connect the CLB I/O to the individual BLE I/O. Reconfigurable Interconnects, made up of Connection Blocks and Switch Boxes, are the "breadboard" of the FPGA. They allow the portions of the digital system to communicate. The CBs connect the CLBs to their adjacent routing channels, while the SBs provide the connections
 between intersecting routing channels. It is common to fold the output portion of 
 the CBs into the SB \cite{chen_efficient_2010}. Thus, the same MUXes used for
@@ -141,15 +141,15 @@ the constraints of ASAP7, the SRAM was implemented as an array of flip flops.
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.5\textwidth]{figs/island_style.png}
-    \caption{Results of python script}
-    \label{fig:results}    
+    \caption{Basic island style FPGA}
+    \label{fig:island}    
 \end{figure}
 
 These Reconfigurable Interconnects dominate the area/power overhead incurred by FPGAs \cite{ALTERA}. In an ASIC, interconnects are simple, passive elements; circuits are connected using fixed metal lines paths above the transistor devices. To enable design flexibility, FPGAs add SRAM configuration storage as well as the mux circuitry required to connect blocks and wires. Not only does this additional circuitry incur a large power/delay overhead, it also must be implemented completely in the Front-End-Of-Line alongside logic transistors, adding significantly to die area.
 
 What if these power/performance/area drawbacks could be mitigated to enhance FPGA-based systems? ASIC circuits are connected solely via Back-End-Of-Line (BEOL) Metal lines. If FPGAs could emulate this structure, much of the overhead incurred from reconfigurable interconnects could be eliminated.
 
-\textit{B. NEM Relays}
+\subsection{NEM Relays}
 
 Nanoelectromechanical Relays are electrically actuated mechanical switches. Notably, they experience zero leakage, have the potential for lower on-state resistance than NMOS pass gate, and can be implemented in the BEOL in a CMOS-compatible process flow\cite{LIU}. The major disadvantages of NEM relays are large mechanical switching delay (> 1ns)\cite{chen_integrated_2008} and lower reliability with respect to transistors ($10^9$ - $10^{10}$ cycles). Two prominent relay device architectures are lateral "crab style" relays and vertical interconnect relays. Due to their hysteretic properties, they can be implemented to replace both the interconnect pass-gates and their corresponding SRAM cells.
 
@@ -158,15 +158,12 @@ The lateral "crab-style" relays are the result of many years of development at S
 The vertical relays are designed to be more compact and compatible with existing CMOS process flows. Rather than using deposited metal or polysilicon as the structural material, these vertical relays use the already-present metal vias/interconnects in a CMOS process flow\cite{SIKDER}. These relays can be implemented as single-pole double-throw switches or simpler single-pole single-throw switches \cite{OLDSIKDER} (like the lateral relays). Both have their own drawbacks and benefits. While the lateral relays involve a "custom" structure, these vertical ones can be designed within the constraints of standard CMOS BEOL design rules as an ASIMPS process; i.e, they use standard metal line/via structures, and dimensions are standard for the process node. Due to this, we explore the vertical relay implementation in depth.
 %------------------------------------------------
 \section{Proposed Techniques}\label{sec:proposed}
-
 In this work, the integration of nanoelectromechanical relays as reconfigurable interconnects is proposed as a way to mitigate the overhead incurred by FPGA-based systems. 
 
-\textit{A. Relay Integration}
-
+\subsection{Relay Integration}
 In Connection Blocks and Switch Boxes, a combination of muxes and buffers are used to route Logic Blocks to wires and different routing wires together. Traditional CMOS muxes are implemented as two-stage serial pass transistor structures for minimum area-delay product. For the relay based designs, these NMOS pass transistors (and corresponding configuration SRAM cells) are replaced with NEM relays. To reduce the number of series relays as well as the number of total relays, a one-stage NEM-based mux is preferable for reduced area and delay\cite{chen_efficient_2010}.
 
 NEM relay based routing muxes can eliminate the need for configuration SRAM by implementing a CMOS half-select programming scheme\cite{chen_efficient_2010}. Similar to the half-select scheme of crossbar arrays, an array of row and column lines program the relays. The relay states are preserved by a constant holding voltage on the row lines and constant select voltage on the column lines. During configuration, an additional (positive or negative) select voltage is superimposed on on the row lines "to be programmed", and the column lines are grounded. This voltage is just enough to actuate the relay into the desired state, but not so much that catastrophic pull-in occurs. Since relays have no leakage current, the only power required to keep the relays in the "hold state" is the dynamic power used during configuration to charge the parasitic capacitance. Since state-of-the-art FPGAs consist of thousands of tiles, the half-select programming array is predicted to consume <5\% of total die area.
-
 %------------------------------------------------
 
 
